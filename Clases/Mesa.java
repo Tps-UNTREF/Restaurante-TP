@@ -7,7 +7,13 @@ public class Mesa {
 
 	private Estados estado;
 	private int numeroDeMesa;
-	private Map<Producto, Integer> consumiciones = new HashMap<Producto, Integer>();
+	private Map<Producto, Integer> consumiciones;
+	
+	public Mesa(int numeroDeMesa,Estados estado){
+		setEstado(estado);
+		this.numeroDeMesa = numeroDeMesa;
+		this.consumiciones = new HashMap<Producto, Integer>();
+	}
 	
 	public Estados getEstado() {
 		return estado;
@@ -19,6 +25,10 @@ public class Mesa {
 	
 	public Map<Producto, Integer> getListaDeConsumiciones() {
 		return consumiciones;
+	}
+	
+	public void setEstado(Estados estado){
+		this.estado = estado;
 	}
 	
 	public enum Estados {
