@@ -41,7 +41,7 @@ public class ModuloMesasTest {
 		assertEquals(Estados.Ocupada, moduloMesa.getMesa(5).getEstado());
 	}
 	
-	@Test(expected = Error.class) // la mesa 6 quedo cerrada
+	@Test(expected = MesaNoDisponibleExcepcion.class) // la mesa 6 quedo cerrada
 	public void e_ModuloMesa_OcuparMesaEnEstadoCerrada() throws MesaNoDisponibleExcepcion {
 		ModuloMesa moduloMesa = ModuloMesa.getModuloMesa();
 		moduloMesa.cerrarMesa(6);
@@ -55,7 +55,7 @@ public class ModuloMesasTest {
 		assertEquals(Estados.Cerrada, moduloMesa.getMesa(7).getEstado());
 	}
 	
-	@Test(expected = Error.class) // la mesa 5 sigue ocupada
+	@Test(expected = MesaNoDisponibleExcepcion.class) // la mesa 5 sigue ocupada
 	public void g_ModuloMesa_CerrarMesaEnEstadoNoDisponible() throws MesaNoDisponibleExcepcion {
 		ModuloMesa moduloMesa = ModuloMesa.getModuloMesa();
 		moduloMesa.cerrarMesa(5);
@@ -76,13 +76,5 @@ public class ModuloMesasTest {
 	}
 	
 
-
-	
-	
-	
-	
-	
-	
-	
 
 }
