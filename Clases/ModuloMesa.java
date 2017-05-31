@@ -17,6 +17,7 @@ public class ModuloMesa {
 	public static ModuloMesa getModuloMesa(){
 		if(null == moduloMesa){
 			moduloMesa = new ModuloMesa();
+			System.out.println("La mesa no estaba creada");
 		}
 		return moduloMesa;
 	}
@@ -39,6 +40,10 @@ public class ModuloMesa {
 	
 	public int getCantidadMesas(){
 		return mesas.size();
+	}
+	
+	public boolean getSeGeneraronMesas(){
+		return this.seGeneraronMesas;
 	}
 	
 	public Mesa getMesa(int numeroDeMesa){
@@ -69,6 +74,24 @@ public class ModuloMesa {
 			throw new Error("La mesa ya esta disponible");
 		}
 	}
+	/**
+	 * pre: Se le ingresa el numero de mesa, y un unico producto que este consumiendo la mesa.
+	 * 
+	 * 
+	 */
+	public void registrarConsumision(int numeroDeMesa,Producto producto){
+		this.mesas.get(numeroDeMesa).setConsumisiones(producto, 1);
+	}
+	/**
+	 * pre: Se le ingresa el numero de mesa, el producto y la cantidad de el producto a agregar.
+	 * 
+	 * 
+	 */
+	public void registrarConsumision(int numeroDeMesa,Producto producto,Integer cantidad){
+		this.mesas.get(numeroDeMesa).setConsumisiones(producto, cantidad);
+	}
+	
+	
 	
 
 	

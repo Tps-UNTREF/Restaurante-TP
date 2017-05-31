@@ -23,13 +23,15 @@ public class Mesa {
 		return numeroDeMesa;
 	}
 	
-	public Map<Producto, Integer> getListaDeConsumiciones() {
-		return consumiciones;
+	public void setConsumisiones(Producto producto,Integer cantidad){
+		this.consumiciones.put(producto, cantidad);
 	}
 	
 	public void setEstado(Estados estado){
 		this.estado = estado;
 	}
+	
+	
 	
 	public enum Estados {
 		Disponible,
