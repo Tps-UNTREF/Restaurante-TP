@@ -3,6 +3,9 @@ package Clases;
 import java.util.ArrayList;
 
 import Clases.Mesa.Estados;
+import Excepciones.MesaNoDisponibleExcepcion;
+import Excepciones.MesaYaDisponibleExcepcion;
+import Excepciones.MesasYaGeneradasExcepcion;
 
 public class ModuloMesa {
 	private static ModuloMesa moduloMesa;
@@ -14,10 +17,9 @@ public class ModuloMesa {
 		this.seGeneraronMesas = false;
 	}
 	
-	public static ModuloMesa getModuloMesa(){
+	public static ModuloMesa getModuloMesa() {
 		if(null == moduloMesa){
 			moduloMesa = new ModuloMesa();
-			System.out.println("La mesa no estaba creada");
 		}
 		return moduloMesa;
 	}
@@ -25,16 +27,17 @@ public class ModuloMesa {
 	/**
 	 * pre: Se le ingresa la cantidad de mesas que quiero para mi local.
 	 * post: Si no se generaron mesas, genera la cantidad de mesas ingresadas y las almacena en la lista.
+	 * @throws MesasYaGeneradasExcepcion 
 	 * 
 	 */
-	public void generarMesas(int cantidadMesas) {
+	public void generarMesas(int cantidadMesas) throws MesasYaGeneradasExcepcion {
 		if(!seGeneraronMesas){
 			for(int i=0; i<cantidadMesas; i++){
 				mesas.add(new Mesa(i,Estados.Disponible));
 			}
 			this.seGeneraronMesas = true;
 		}else{
-			throw new Error("Ya se generaron las mesas");
+			throw new MesasYaGeneradasExcepcion("Ya se generaron las mesas");
 		}
 	}
 	
@@ -51,27 +54,27 @@ public class ModuloMesa {
 	}
 
 	
-	public void ocuparMesa(int numeroDeMesa) {
+	public void ocuparMesa(int numeroDeMesa) throws MesaNoDisponibleExcepcion {
 		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Disponible){
 			this.mesas.get(numeroDeMesa).setEstado(Estados.Ocupada);
 		}else{
-			throw new Error("La mesa tiene que estar disponible para poder ocuparla.");
+			throw new MesaNoDisponibleExcepcion("La mesa tiene que estar disponible para poder ocuparla.");
 		}
 	}
 	
-	public void cerrarMesa(int numeroDeMesa) {
+	public void cerrarMesa(int numeroDeMesa) throws MesaNoDisponibleExcepcion {
 		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Disponible){
 			this.mesas.get(numeroDeMesa).setEstado(Estados.Cerrada);
 		}else{
-			throw new Error("La mesa tiene que estar disponible para poder cerrarla.");
+			throw new MesaNoDisponibleExcepcion("La mesa tiene que estar disponible para poder cerrarla.");
 		}
 	}
 	
-	public void pasarMesaADisponible(int numeroDeMesa) {
+	public void pasarMesaADisponible(int numeroDeMesa) throws MesaYaDisponibleExcepcion {
 		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Cerrada || this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada){
 			this.mesas.get(numeroDeMesa).setEstado(Estados.Disponible);
 		}else{
-			throw new Error("La mesa ya esta disponible");
+			throw new MesaYaDisponibleExcepcion("La mesa ya esta disponible");
 		}
 	}
 	/**
