@@ -17,7 +17,6 @@ public class ModuloMesa {
 	public static ModuloMesa getModuloMesa(){
 		if(null == moduloMesa){
 			moduloMesa = new ModuloMesa();
-			System.out.println("La mesa no estaba creada");
 		}
 		return moduloMesa;
 	}
