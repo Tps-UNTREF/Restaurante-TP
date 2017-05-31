@@ -41,8 +41,8 @@ public class ModuloMesasTest {
 	@Test(expected = Error.class) // la mesa 6 quedo cerrada
 	public void e_ModuloMesa_OcuparMesaEnEstadoCerrada() {
 		ModuloMesa moduloMesa = ModuloMesa.getModuloMesa();
-		moduloMesa.cerrarMesa(5);
-		moduloMesa.ocuparMesa(5);
+		moduloMesa.cerrarMesa(6);
+		moduloMesa.ocuparMesa(6);
 	}
 	
 	@Test
@@ -58,20 +58,21 @@ public class ModuloMesasTest {
 		moduloMesa.cerrarMesa(5);
 	}
 	
-	@Test
+	@Test // la mesa 7 paso a disponible
 	public void h_ModuloMesa_PasarADisponibleEstandoCerrada() {
 		ModuloMesa moduloMesa = ModuloMesa.getModuloMesa();
 		moduloMesa.pasarMesaADisponible(7);
 		assertEquals(Estados.Disponible, moduloMesa.getMesa(7).getEstado());
 	}
 	
-	@Test
+	@Test // la mesa 5 paso a disponible
 	public void i_ModuloMesa_PasarADisponibleEstandoOcupada() {
 		ModuloMesa moduloMesa = ModuloMesa.getModuloMesa();
 		moduloMesa.pasarMesaADisponible(5);
 		assertEquals(Estados.Disponible, moduloMesa.getMesa(5).getEstado());
 	}
 	
+
 
 	
 

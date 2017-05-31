@@ -79,16 +79,24 @@ public class ModuloMesa {
 	 * 
 	 * 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Producto producto){
-		this.mesas.get(numeroDeMesa).setConsumisiones(producto, 1);
+	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto){
+		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada){
+			this.mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, 1);
+		}else{
+			throw new Error("La mesa tiene que estar ocupada");
+		}
 	}
 	/**
 	 * pre: Se le ingresa el numero de mesa, el producto y la cantidad de el producto a agregar.
 	 * 
 	 * 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Producto producto,Integer cantidad){
-		this.mesas.get(numeroDeMesa).setConsumisiones(producto, cantidad);
+	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto,Integer cantidad){
+		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada){
+			this.mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, cantidad);
+		}else{
+			throw new Error("La mesa tiene que estar ocupada");
+		}
 	}
 	
 	
