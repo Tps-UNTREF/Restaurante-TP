@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Clases.Mesa.Estados;
 import Excepciones.MesaNoDisponibleExcepcion;
+import Excepciones.MesaNoOcupadaExepcion;
 import Excepciones.MesaYaDisponibleExcepcion;
 import Excepciones.MesasYaGeneradasExcepcion;
 
@@ -79,26 +80,28 @@ public class ModuloMesa {
 	}
 	/**
 	 * pre: Se le ingresa el numero de mesa, y un unico producto que este consumiendo la mesa.
+	 * @throws MesaNoOcupadaExepcion 
 	 * 
 	 * 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto){
+	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto) throws MesaNoOcupadaExepcion{
 		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada){
 			this.mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, 1);
 		}else{
-			throw new Error("La mesa tiene que estar ocupada");
+			throw new MesaNoOcupadaExepcion("La mesa tiene que estar ocupada");
 		}
 	}
 	/**
 	 * pre: Se le ingresa el numero de mesa, el producto y la cantidad de el producto a agregar.
+	 * @throws MesaNoOcupadaExepcion 
 	 * 
 	 * 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto,Integer cantidad){
+	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto,Integer cantidad) throws MesaNoOcupadaExepcion{
 		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada){
 			this.mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, cantidad);
 		}else{
-			throw new Error("La mesa tiene que estar ocupada");
+			throw new MesaNoOcupadaExepcion("La mesa tiene que estar ocupada");
 		}
 	}
 	
