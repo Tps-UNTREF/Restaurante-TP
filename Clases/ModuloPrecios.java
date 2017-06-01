@@ -5,6 +5,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Clases.Producto.Categorias;
 
@@ -37,6 +38,7 @@ public class ModuloPrecios {
 			}
 		}
 	}
+	
 	
 	/**
 	 * pre: Debe existir el producto en la lista.
@@ -83,6 +85,20 @@ public class ModuloPrecios {
 			this.bajaProducto(productoAActualizar.getCodigoDeProducto());
 			productos.add(productoActualizado);
 		}
+	}
+	/**
+	 * pre: Se le pasa un codigo De producto por parametro
+	 * post: Devuelve verdadero si el producto se encuentra en la lista.
+	 */
+	public boolean existeProducto(int codigoDeProducto){
+		Iterator<Producto> it = productos.iterator();
+		boolean encontro = false;
+		while(it.hasNext()&&!encontro){
+			if(it.next().getCodigoDeProducto() == codigoDeProducto){
+				encontro = true;
+			}
+		}
+		return encontro;
 	}
 	
 	/**

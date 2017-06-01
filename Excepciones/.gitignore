@@ -8,3 +8,4 @@
 /CantidadDeProductosInvalidoException.class
 /DescuentoInvalidoException.class
 /PrecioDeVentaInvalidoException.class
+/ProductoNoEncontradoException.class
