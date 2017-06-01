@@ -1,5 +1,7 @@
 package Clases;
 
+import Excepciones.PrecioDeVentaInvalidoException;
+
 public abstract class Producto {
 	
 	private static int contadorId = 0;
@@ -9,11 +11,12 @@ public abstract class Producto {
 	private double precioDeVenta;
 	private Categorias categoria;
 	
-	public Producto(String descripcion, double precioDeCosto, double precioDeVenta, Categorias categoria) {
+	public Producto(String descripcion, double precioDeCosto, double precioDeVenta, Categorias categoria) throws PrecioDeVentaInvalidoException {
 		contadorId++;
 		this.codigoDeProducto = contadorId;
 		this.descripcion = descripcion;
 		this.precioDeCosto = precioDeCosto;
+		this.setPrecioDeVenta(precioDeVenta);
 		this.categoria = categoria;
 	}
 	
@@ -41,8 +44,12 @@ public abstract class Producto {
 		return precioDeCosto;
 	}
 	
-	public void setprecioDeVenta(double precioDeVenta) {
-		this.precioDeVenta = precioDeVenta;
+	public void setPrecioDeVenta(double precioDeVenta) throws PrecioDeVentaInvalidoException {
+		if(precioDeVenta > this.getPrecioDeCosto()) {
+			this.precioDeVenta = precioDeVenta;
+		} else {
+			throw new PrecioDeVentaInvalidoException();
+		}
 	}
 	
 	public double getPrecioDeVenta() {

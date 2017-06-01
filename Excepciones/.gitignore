@@ -5,3 +5,6 @@
 /MesaYADisponibleExcepcion.class
 /MesaYaDisponibleExcepcion.class
 /MesaNoOcupadaExepcion.class
+/CantidadDeProductosInvalidoException.class
+/DescuentoInvalidoException.class
+/PrecioDeVentaInvalidoException.class
