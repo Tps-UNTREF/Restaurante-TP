@@ -75,6 +75,14 @@ public class ModuloMesasTest {
 		assertEquals(Estados.Disponible, moduloMesa.getMesa(5).getEstado());
 	}
 	
+	@Test // la mesa 5 paso a disponible
+	public void j_ModuloMesa_PasarADisponibleEstandoOcupada() throws MesaYaDisponibleExcepcion {
+		ModuloMesa moduloMesa = ModuloMesa.getModuloMesa();
+		moduloMesa.pasarMesaADisponible(5);
+		assertEquals(Estados.Disponible, moduloMesa.getMesa(5).getEstado());
+	}
+	
+	
 
 
 }
