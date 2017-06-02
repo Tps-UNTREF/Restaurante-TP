@@ -3,6 +3,7 @@ package Clases;
 import java.util.HashMap;
 import java.util.Map;
 import Excepciones.MesaNoOcupadaExepcion;
+import Excepciones.ProductoNoEncontradoException;
 import Excepciones.MesaEstadoInvalidoExcepcion;
 import Excepciones.MesaNoDisponibleExcepcion;
 
@@ -27,10 +28,12 @@ public class Mesa {
 	}
 
 	public void setConsumisiones(Integer codigoDeProducto, Integer cantidad) throws MesaNoOcupadaExepcion {
-		if(getEstado() == Estados.Ocupada){
-			this.consumiciones.put(codigoDeProducto, cantidad);
-		}else{
+		if(getEstado() != Estados.Ocupada){
 			throw new MesaNoOcupadaExepcion("La mesa " + this.getNumeroDeMesa() + " tiene que estar ocupada");
+		} else if (!(ModuloPrecios.getModuloPrecios().existeProducto(codigoDeProducto))) { 
+			new ProductoNoEncontradoException("Codigo de producto (" + codigoDeProducto + ") no encontrado en menu");
+		}else{
+			consumiciones.put(codigoDeProducto, consumiciones.getOrDefault(codigoDeProducto, 0) + cantidad);
 		}
 	}
 

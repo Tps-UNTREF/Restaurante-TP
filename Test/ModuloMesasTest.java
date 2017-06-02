@@ -20,7 +20,7 @@ public class ModuloMesasTest {
 	public void inicializacion() throws MesasYaGeneradasExcepcion, MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion {
 		// Si es la primera vez, genera las 10 mesas
 		if (moduloMesa.getCantidadMesas() == 0) {
-			moduloMesa.generarMesas(10);			
+			ModuloMesa.generarMesas(10);			
 		}		
 		// Me encargo de pasar todas las mesas a disponible
 		for(int i=0; i<moduloMesa.getCantidadMesas(); i++){

@@ -11,11 +11,9 @@ import java.util.Iterator;
 public class ModuloPrecios {
 	
 	private static ModuloPrecios moduloPrecios;
-	private ArrayList<Producto> productos;
+	private ArrayList<Producto> productos = new ArrayList<Producto>();
 	
-	private ModuloPrecios() {
-		this.productos = new ArrayList<Producto>();
-	}
+	private ModuloPrecios() { }
 	
 	public static ModuloPrecios getModuloPrecios() {
 		if(moduloPrecios == null) {

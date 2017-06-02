@@ -11,13 +11,11 @@ import Excepciones.ProductoNoEncontradoException;
 
 public class ModuloMesa {
 	private static ModuloMesa moduloMesa;
-	private ArrayList<Mesa> mesas;
+	private static ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	/**
 	 * post: Constructor privado por que es un singleton, crearlo a partir del metodo getModuloMesa().
 	 */
-	private ModuloMesa(){
-		this.mesas = new ArrayList<Mesa>();
-	}
+	private ModuloMesa() { }
 	/**
 	 * post: Si el moduloMesa no esta instanciado, lo instancia y lo devuelve.
 	 */
@@ -27,14 +25,12 @@ public class ModuloMesa {
 		}
 		return moduloMesa;
 	}
-	
 	/**
 	 * pre: Se le ingresa la cantidad de mesas que quiero para mi local.
 	 * post: Si no se generaron mesas, genera la cantidad de mesas ingresadas y las almacena en la lista.
 	 * @throws MesasYaGeneradasExcepcion 
-	 * 
 	 */
-	public void generarMesas(int cantidadMesas) throws MesasYaGeneradasExcepcion {
+	public static void generarMesas(int cantidadMesas) throws MesasYaGeneradasExcepcion {
 		if(mesas.size() == 0){
 			for(int i=0; i<cantidadMesas; i++){
 				mesas.add(new Mesa(i,Estados.Disponible));
@@ -53,10 +49,8 @@ public class ModuloMesa {
 	 * post: Devuelve la cantidad de mesas que tiene el restaurante.
 	 */
 	public Mesa getMesa(int numeroDeMesa){
-		return this.mesas.get(numeroDeMesa);
+		return mesas.get(numeroDeMesa);
 	}
-
-	
 	/**
 	 * pre: Se le pasa por parametro el numero de mesa a ocupar.
 	 * post: La mesa es ocupada en el caso de que su estado sea disponible.
@@ -83,24 +77,16 @@ public class ModuloMesa {
 	 * @throws MesaNoOcupadaExepcion 
 	 * @throws ProductoNoEncontradoException 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto) throws MesaNoOcupadaExepcion{
-		if(ModuloPrecios.getModuloPrecios().existeProducto(codigoDeProducto)){
-			mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, 1);
-		}else {
-			throw new ProductoNoEncontradoException("Codigo de producto no encontrado en la lista de precios");
-		}
+	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
+		mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, 1);
 	}
 	/**
 	 * pre: Se le ingresa el numero de mesa, el producto y la cantidad de el producto a agregar.
 	 * @throws MesaNoOcupadaExepcion 
 	 * @throws ProductoNoEncontradoException 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto,Integer cantidad) throws MesaNoOcupadaExepcion{
-		if(ModuloPrecios.getModuloPrecios().existeProducto(codigoDeProducto)){
-			this.mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, cantidad);
-		} else {
-			throw new ProductoNoEncontradoException("Codigo de producto no encontrado en la lista de precios");
-		}
+	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto,Integer cantidad) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
+		mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, cantidad);
 	}
 	
 	
