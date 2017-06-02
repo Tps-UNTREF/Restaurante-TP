@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Clases.Mesa.Estados;
+import Excepciones.MesaEstadoInvalidoExcepcion;
+import Excepciones.MesaNoDisponibleExcepcion;
 import Excepciones.MesaNoOcupadaExepcion;
 
 public class ModuloCaja {
@@ -23,10 +25,10 @@ public class ModuloCaja {
 		return moduloCaja;
 	}
 	
-	public void generarTicket(Mesa mesa) throws MesaNoOcupadaExepcion{
+	public void generarTicket(Mesa mesa) throws MesaNoOcupadaExepcion, MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion{
 		if(mesa.getEstado() == Estados.Ocupada){
 			double montoTotal = ListarEnConsola(mesa);
-			tickets.add(new Ticket(mesa,montoTotal)); 
+			tickets.add(new Ticket(mesa,montoTotal));  //agrega un ticket nuevo con el montoTotal
 			mesa.setEstado(Estados.Disponible); // Pasa la mesa a disponible
 			System.out.println("La mesa paso a " + mesa.getEstado());
 			mesa.getConsumisiones().clear(); // borra la lista de consumisiones

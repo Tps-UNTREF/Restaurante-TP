@@ -2,7 +2,7 @@ package Clases;
 
 import Excepciones.PrecioDeVentaInvalidoException;
 
-public abstract class Producto {
+public abstract class Producto implements Comparable<Producto> {
 	
 	private static int contadorId = 0;
 	private int codigoDeProducto;
@@ -54,6 +54,24 @@ public abstract class Producto {
 	
 	public double getPrecioDeVenta() {
 		return precioDeVenta;
+	}
+	
+	@Override
+    public int compareTo(Producto other){
+        return this.getCategoria().compareTo(other.getCategoria());
+    }
+	
+	@Override
+	public String toString() {
+		return getCodigoDeProducto() + leftPad(getDescripcion(), 20, '.') + leftPad(getPrecioDeVenta(), 10, '.');
+	}
+
+	private String leftPad(Object original, int length, char padCharacter) {
+		String paddedString = original.toString();
+      	while (paddedString.length() < length) {
+    	  paddedString = padCharacter + paddedString;
+      	}
+      	return paddedString;
 	}
 	
 	public enum Categorias {

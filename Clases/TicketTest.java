@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import Clases.Mesa.Estados;
 import Clases.Producto.Categorias;
+import Excepciones.MesaEstadoInvalidoExcepcion;
 import Excepciones.MesaNoDisponibleExcepcion;
 import Excepciones.MesaNoOcupadaExepcion;
 import Excepciones.MesasYaGeneradasExcepcion;
@@ -20,7 +21,7 @@ public class TicketTest {
 	}
 	
 	@Test
-	public void Ticket_FechaHora() throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException, MesaNoOcupadaExepcion, MesaNoDisponibleExcepcion {
+	public void Ticket_FechaHora() throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException, MesaNoOcupadaExepcion, MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion {
 		ModuloCaja mc = ModuloCaja.getModuloCaja();
 		ModuloPrecios mp = ModuloPrecios.getModuloPrecios();
 		ModuloMesa mm = ModuloMesa.getModuloMesa();
@@ -29,7 +30,7 @@ public class TicketTest {
 		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categorias.BebidaSinAlcohol);
 		ProductoUnico p3 = new ProductoUnico("Milanga napolitanga con fritangas", 20, 70, Categorias.Minutas);
 		
-		mm.generarMesas(2);
+		ModuloMesa.generarMesas(2);
 		mp.altaProducto(p1);
 		mp.altaProducto(p3);
 		
