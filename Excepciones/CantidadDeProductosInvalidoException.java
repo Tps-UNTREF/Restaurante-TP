@@ -1,5 +1,6 @@
 package Excepciones;
 
+@SuppressWarnings("serial")
 public class CantidadDeProductosInvalidoException extends Exception {
 
 	@Override

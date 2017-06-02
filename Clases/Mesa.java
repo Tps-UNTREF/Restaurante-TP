@@ -2,15 +2,18 @@ package Clases;
 
 import java.util.HashMap;
 import java.util.Map;
+import Excepciones.MesaNoOcupadaExepcion;
+import Excepciones.MesaEstadoInvalidoExcepcion;
+import Excepciones.MesaNoDisponibleExcepcion;
 
 public class Mesa {
 
-	private Estados estado;
+	private Estados estado = null;
 	private int numeroDeMesa;
 	private Map<Integer, Integer> consumiciones;
 
 	public Mesa(int numeroDeMesa, Estados estado) {
-		setEstado(estado);
+		this.estado = estado;
 		this.numeroDeMesa = numeroDeMesa;
 		this.consumiciones = new HashMap<Integer, Integer>();
 	}
@@ -23,12 +26,22 @@ public class Mesa {
 		return numeroDeMesa;
 	}
 
-	public void setConsumisiones(Integer codigoDeProducto, Integer cantidad) {
-		this.consumiciones.put(codigoDeProducto, cantidad);
+	public void setConsumisiones(Integer codigoDeProducto, Integer cantidad) throws MesaNoOcupadaExepcion {
+		if(getEstado() == Estados.Ocupada){
+			this.consumiciones.put(codigoDeProducto, cantidad);
+		}else{
+			throw new MesaNoOcupadaExepcion("La mesa " + this.getNumeroDeMesa() + " tiene que estar ocupada");
+		}
 	}
 
-	public void setEstado(Estados estado) {
-		this.estado = estado;
+	public void setEstado(Estados estado) throws MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion {
+		if(getEstado() == estado){
+			throw new MesaEstadoInvalidoExcepcion("La mesa ya esta " + estado.toString());
+		} else if ((estado == Estados.Ocupada || estado == Estados.Cerrada ) && getEstado() != Estados.Disponible) {
+			throw new MesaNoDisponibleExcepcion("La mesa tiene que estar disponible pasarla al esta " + estado.toString());
+		} else {
+			this.estado = estado;
+		}
 	}
 
 	public enum Estados {

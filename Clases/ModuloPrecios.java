@@ -5,8 +5,8 @@
 package Clases;
 
 import java.util.ArrayList;
-
-import Clases.Producto.Categorias;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class ModuloPrecios {
 	
@@ -84,41 +84,38 @@ public class ModuloPrecios {
 			productos.add(productoActualizado);
 		}
 	}
+	/**
+	 * pre: Se le pasa un codigo De producto por parametro
+	 * post: Devuelve verdadero si el producto se encuentra en la lista.
+	 */
+	public boolean existeProducto(int codigoDeProducto){
+		Iterator<Producto> it = productos.iterator();
+		boolean encontro = false;
+		while(it.hasNext()&&!encontro){
+			if(it.next().getCodigoDeProducto() == codigoDeProducto){
+				encontro = true;
+			}
+		}
+		return encontro;
+	}
 	
 	/**
 	 * post: Lista los productos del menú con sus respectivos precios.
 	 */
 	public void listarMenu() {
-		System.out.println("Bebidas sin alcohol");
+		//Ordeno los productos por categoria
+		Collections.sort(productos);
+		String ultimaCategoria = "";
 		for(Producto p : productos) {
-			if(p.getCategoria() == Categorias.BebidaSinAlcohol) {
-				System.out.println(p.getCodigoDeProducto() + "..." + p.getDescripcion() + "......" + p.getPrecioDeVenta());
+			//Si esta categoria de este producto es diferente a la anterior, la imprimo
+			if (ultimaCategoria != p.getCategoria().toString()) {
+				System.out.println(p.getCategoria().toString());
+				ultimaCategoria = p.getCategoria().toString();
 			}
-		}
-		System.out.println("Bebidas con alcohol");
-		for(Producto p : productos) {
-			if(p.getCategoria() == Categorias.BebidaConAlcohol) {
-				System.out.println(p.getCodigoDeProducto() + "..." + p.getDescripcion() + "......" + p.getPrecioDeVenta());
-			}
-		}
-		System.out.println("Hamburguesas");
-		for(Producto p : productos) {
-			if(p.getCategoria() == Categorias.Hamburguesas) {
-				System.out.println(p.getCodigoDeProducto() + "..." + p.getDescripcion() + "......" + p.getPrecioDeVenta());
-			}
-		}
-		System.out.println("Pizzas");
-		for(Producto p : productos) {
-			if(p.getCategoria() == Categorias.Pizzas) {
-				System.out.println(p.getCodigoDeProducto() + "..." + p.getDescripcion() + "......" + p.getPrecioDeVenta());
-			}
-		}
-		System.out.println("Minutas");
-		for(Producto p : productos) {
-			if(p.getCategoria() == Categorias.Minutas) {
-				System.out.println(p.getCodigoDeProducto() + "..." + p.getDescripcion() + "......" + p.getPrecioDeVenta());
-			}
+			//Imprimo el producto
+			System.out.println(p.toString());
 		}
 	}
+	
 
 }
