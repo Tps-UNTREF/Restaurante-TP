@@ -106,12 +106,12 @@ public class ModuloMesa {
 	 * 
 	 * 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
+	public void registrarConsumision(int numeroDeMesa,Producto producto) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
 		boolean existe = false;
-		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada && (existe = ModuloPrecios.getModuloPrecios().existeProducto(codigoDeProducto))){
-			this.mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, 1);
+		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada && (existe = ModuloPrecios.getModuloPrecios().existeProducto(producto))){
+			this.mesas.get(numeroDeMesa).setConsumisiones(producto, 1);
 		}else if(!existe){
-			throw new ProductoNoEncontradoException("Codigo de producto no encontrado en la lista de precios");
+			throw new ProductoNoEncontradoException("Producto no encontrado en la lista de precios");
 		}else{
 			throw new MesaNoOcupadaExepcion("La mesa tiene que estar ocupada");
 		}
@@ -121,12 +121,12 @@ public class ModuloMesa {
 	 * @throws MesaNoOcupadaExepcion 
 	 * @throws ProductoNoEncontradoException 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto,Integer cantidad) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
+	public void registrarConsumision(int numeroDeMesa,Producto producto,Integer cantidad) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
 		boolean existe = false;
-		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada && (existe = ModuloPrecios.getModuloPrecios().existeProducto(codigoDeProducto))){
-			this.mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, cantidad);
+		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada && (existe = ModuloPrecios.getModuloPrecios().existeProducto(producto))){
+			this.mesas.get(numeroDeMesa).setConsumisiones(producto, cantidad);
 		}else if(!existe){
-			throw new ProductoNoEncontradoException("Codigo de producto no encontrado en la lista de precios");
+			throw new ProductoNoEncontradoException("Producto no encontrado en la lista de precios");
 		}else{
 			throw new MesaNoOcupadaExepcion("La mesa tiene que estar ocupada");
 		}

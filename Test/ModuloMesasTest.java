@@ -75,13 +75,35 @@ public class ModuloMesasTest {
 		assertEquals(Estados.Disponible, moduloMesa.getMesa(5).getEstado());
 	}
 	
-	@Test // la mesa 5 paso a disponible
-	public void j_ModuloMesa_PasarADisponibleEstandoOcupada() throws MesaYaDisponibleExcepcion {
-		ModuloMesa moduloMesa = ModuloMesa.getModuloMesa();
-		moduloMesa.pasarMesaADisponible(5);
-		assertEquals(Estados.Disponible, moduloMesa.getMesa(5).getEstado());
+	@Test 
+	public void j_ModuloMesa_registrarUnaConsumision() throws MesaYaDisponibleExcepcion {
+
 	}
 	
+	@Test 
+	public void k_ModuloMesa_registrarUnaConsumisionSinQueExistaLaConsumision() throws MesaYaDisponibleExcepcion {
+		
+	}
+	
+	@Test 
+	public void l_ModuloMesa_registrarUnaConsumisionConMesaCerrada() throws MesaYaDisponibleExcepcion {
+		
+	}
+	
+	@Test 
+	public void m_ModuloMesa_registrarDosConsumision() throws MesaYaDisponibleExcepcion {
+		
+	}
+	
+	@Test 
+	public void n_ModuloMesa_registrarDosConsumisionSinQueExistaLaConsumision() throws MesaYaDisponibleExcepcion {
+		
+	}
+	
+	@Test
+	public void ñ_ModuloMesa_registrarDosConsumisionConMesaCerrada() throws MesaYaDisponibleExcepcion {
+		
+	}
 	
 
 
