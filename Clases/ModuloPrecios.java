@@ -36,6 +36,7 @@ public class ModuloPrecios {
 		}
 	}
 	
+	
 	/**
 	 * pre: Debe existir el producto en la lista.
 	 * post: Devuelve una descripción del producto.

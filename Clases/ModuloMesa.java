@@ -46,7 +46,8 @@ public class ModuloMesa {
 		return mesas.size();
 	}
 	/**
-	 * post: Devuelve la cantidad de mesas que tiene el restaurante.
+	 * pre: Se le pasa por parametro el numero de mesa a buscar.
+	 * post: Devuelve una mesa.
 	 */
 	public Mesa getMesa(int numeroDeMesa){
 		return mesas.get(numeroDeMesa);

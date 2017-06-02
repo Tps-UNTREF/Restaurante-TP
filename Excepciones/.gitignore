@@ -8,6 +8,9 @@
 /CantidadDeProductosInvalidoException.class
 /DescuentoInvalidoException.class
 /PrecioDeVentaInvalidoException.class
+<<<<<<< HEAD
 /MesaEstadoExcepcion.class
 /MesaEstadoInvalidoExcepcion.class
+=======
+>>>>>>> branch 'master' of https://github.com/Tps-UNTREF/Restaurante-TP.git
 /ProductoNoEncontradoException.class
