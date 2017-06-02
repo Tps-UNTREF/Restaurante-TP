@@ -84,7 +84,7 @@ public class ModuloPrecios {
 		}
 	}
 	/**
-	 * pre: Se le pasa un codigo De producto por parametro
+	 * pre: Se le pasa un producto por parametro
 	 * post: Devuelve verdadero si el producto se encuentra en la lista.
 	 */
 	public boolean existeProducto(Producto producto){

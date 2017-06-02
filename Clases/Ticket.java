@@ -1,5 +1,4 @@
 package Clases;
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -7,15 +6,16 @@ public class Ticket{
 
 	private static int contadorid;
 	private int codigoDeTicket;
-	private Date fecha;
+	private Date fechaYHora;
 	private double montoTotal;
 	private Mesa mesa;
 	
 	
-	public Ticket(Mesa mesa,double montoTotal) {
+	public Ticket(Mesa mesa,double montoTotal,Date fechaYHora) {
 		this.codigoDeTicket = contadorid++;
 		this.mesa = mesa;
 		setMontoTotal(montoTotal);
+		setFecha(fechaYHora);
 	}
 
 	public int getCodigoDeTicket() {
@@ -35,11 +35,11 @@ public class Ticket{
 	}
 
 	public Date getFecha() {
-		return fecha;
+		return this.fechaYHora;
 	}
 
 	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+		this.fechaYHora = fecha;
 	}
 
 	public Mesa getMesa() {

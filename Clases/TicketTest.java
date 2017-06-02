@@ -2,6 +2,8 @@ package Clases;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import Clases.Mesa.Estados;
@@ -16,7 +18,7 @@ public class TicketTest {
 
 	@Test
 	public void Ticket_CodigoDeMesa() {
-		Ticket ticket = new Ticket(new Mesa(1,Estados.Disponible),20);
+		Ticket ticket = new Ticket(new Mesa(1,Estados.Disponible),20,new Date());
 		assertEquals(1,ticket.getCodigoDeTicket());
 	}
 	
@@ -39,7 +41,8 @@ public class TicketTest {
 		mm.getMesa(1).setConsumisiones(p3, 2);
 		
 		mc.generarTicket(mm.getMesa(1));
-			
+		
+
 	}
 	
 	
