@@ -10,46 +10,43 @@ public class Ticket{
 	private double montoTotal;
 	private Mesa mesa;
 	
-	
+	/**
+	 * pre: Se le pasa una mesa, un montoTotal y una fecha.
+	 * post: genera el ticket
+	 */
 	public Ticket(Mesa mesa,double montoTotal,Date fechaYHora) {
 		this.codigoDeTicket = contadorid++;
 		this.mesa = mesa;
-		setMontoTotal(montoTotal);
-		setFecha(fechaYHora);
+		this.montoTotal = montoTotal;
+		this.fechaYHora = fechaYHora;
 	}
-
+	/**
+	 * post: Devuelve el codigo del ticket
+	 */
 	public int getCodigoDeTicket() {
 		return codigoDeTicket;
 	}
-
-	public void setCodigoDeTicket(int codigoDeTicket) {
-		this.codigoDeTicket = codigoDeTicket;
-	}
-	
+	/**
+	 * post: Devuelve el montoTotal.
+	 */
 	public double getMontoTotal(){
 		return this.montoTotal;
 	}
-	
-	private void setMontoTotal(double monto){
-		this.montoTotal = monto;
-	}
-
+	/**
+	 * post: Devuelve la fecha en formate Date.
+	 */
 	public Date getFecha() {
 		return this.fechaYHora;
 	}
-
-	public void setFecha(Date fecha) {
-		this.fechaYHora = fecha;
-	}
-
+	/**
+	 * post: Devuelve la mesa del ticket.
+	 */
 	public Mesa getMesa() {
 		return mesa;
 	}
-
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
-	}
-	
+	/**
+	 * post: Devuelve la descripcion del ticket.
+	 */
 	public String toString(){
 		return "Numero de ticket: " + getCodigoDeTicket() + " MontoTicket: " + getMontoTotal();
 	}

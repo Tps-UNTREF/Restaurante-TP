@@ -25,6 +25,10 @@ public class ModuloCaja {
 		return moduloCaja;
 	}
 	
+	/**
+	 * pre: Genera el ticket de una mesa
+	 * post: La mesa tiene que estar ocupada, si eso es correcto calcula el monto total de la lista generando el ticket para la mesa y almacenandola en lista. Luego pone la mesa en disponible y limpia las consumisiones de la mesa.
+	 */
 	public void generarTicket(Mesa mesa) throws MesaNoOcupadaExepcion, MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion{
 		if(mesa.getEstado() == Estados.Ocupada){
 			double montoTotal = ListarEnConsola(mesa);
@@ -37,7 +41,9 @@ public class ModuloCaja {
 			throw new MesaNoOcupadaExepcion("La mesa tiene que estar ocupada para poder generar ticket");
 		}
 	}
-
+	/**
+	 * post: Calcula el monto y muestra por consola el ticket.
+	 */
 	private double ListarEnConsola(Mesa mesa) {
 		HashMap<Producto,Integer> consumisiones = mesa.getConsumisiones();
 		double suma = 0;
@@ -48,7 +54,10 @@ public class ModuloCaja {
 		System.out.println("Total a pagar: " + suma);
 		return suma;
 	}
-	
+	/**
+	 * pre: Se le pasa 2 fechas
+	 * post: Busca todos los tickets entre las 2 fechas dadas y calcula los ingresos totales entre esas 2 fechas. Tambien muestra por consola el codigo del ticket y su valor.
+	 */
 	public void listarTickets(Date fecha1,Date fecha2){
 		double ingresos = 0;
 		for(Ticket t: tickets){
