@@ -7,6 +7,7 @@ package Clases;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public class ModuloPrecios {
 	
@@ -101,7 +102,7 @@ public class ModuloPrecios {
 	/**
 	 * post: Lista los productos del menú con sus respectivos precios.
 	 */
-	public void listarMenu() {
+	public List<Producto> listarMenu() {
 		//Ordeno los productos por categoria
 		Collections.sort(productos);
 		String ultimaCategoria = "";
@@ -114,6 +115,7 @@ public class ModuloPrecios {
 			//Imprimo el producto
 			System.out.println(p.toString());
 		}
+		return productos;
 	}
 	
 
