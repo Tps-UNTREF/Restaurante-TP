@@ -1,6 +1,6 @@
 package Test;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,8 +23,8 @@ ModuloPrecios moduloPrecios = ModuloPrecios.getModuloPrecios();
 		for (Producto p : moduloPrecios.listarMenu()) {
 			moduloPrecios.bajaProducto(p.getCodigoDeProducto());
 		}
-		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 45, Categorias.BebidaConAlcohol);
-		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 35, Categorias.Pizzas);
+		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BebidaConAlcohol);
+		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 55, Categorias.Pizzas);
 		Combo muzaHeineken = new Combo("Mozzarella + Heineken", 10);
 		muzaHeineken.agregarProducto(heineken, 1);
 		muzaHeineken.agregarProducto(mozzarella, 1);

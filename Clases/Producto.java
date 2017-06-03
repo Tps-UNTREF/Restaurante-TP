@@ -45,7 +45,7 @@ public abstract class Producto implements Comparable<Producto> {
 	}
 	
 	public void setPrecioDeVenta(double precioDeVenta) throws PrecioDeVentaInvalidoException {
-		if(precioDeVenta > this.getPrecioDeCosto()) {
+		if(precioDeVenta >= this.getPrecioDeCosto()) {
 			this.precioDeVenta = precioDeVenta;
 		} else {
 			throw new PrecioDeVentaInvalidoException();

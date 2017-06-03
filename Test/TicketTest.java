@@ -1,4 +1,4 @@
-package Clases;
+package Test;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,12 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import Clases.Mesa;
+import Clases.ModuloCaja;
+import Clases.ModuloMesa;
+import Clases.ModuloPrecios;
+import Clases.ProductoUnico;
+import Clases.Ticket;
 import Clases.Mesa.Estados;
 import Clases.Producto.Categorias;
 import Excepciones.MesaEstadoInvalidoExcepcion;
@@ -13,6 +19,7 @@ import Excepciones.MesaNoDisponibleExcepcion;
 import Excepciones.MesaNoOcupadaExepcion;
 import Excepciones.MesasYaGeneradasExcepcion;
 import Excepciones.PrecioDeVentaInvalidoException;
+import Excepciones.ProductoNoEncontradoException;
 
 public class TicketTest {
 
@@ -23,7 +30,7 @@ public class TicketTest {
 	}
 	
 	@Test
-	public void Ticket_FechaHora() throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException, MesaNoOcupadaExepcion, MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion {
+	public void Ticket_FechaHora() throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException, MesaNoOcupadaExepcion, MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, ProductoNoEncontradoException {
 		ModuloCaja mc = ModuloCaja.getModuloCaja();
 		ModuloPrecios mp = ModuloPrecios.getModuloPrecios();
 		ModuloMesa mm = ModuloMesa.getModuloMesa();

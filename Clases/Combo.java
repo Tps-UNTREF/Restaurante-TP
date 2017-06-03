@@ -65,8 +65,8 @@ public class Combo extends Producto {
 			precioDeVentaTotal += (p.getValue() * p.getKey().getPrecioDeVenta());
 			precioDeCostoTotal += (p.getValue() * p.getKey().getPrecioDeCosto());
 		}
-		super.setPrecioDeVenta(descuento * precioDeVentaTotal / 100);
 		super.setPrecioDeCosto(precioDeCostoTotal);
+		super.setPrecioDeVenta(descuento * (precioDeVentaTotal / 100));
 	}
 	
 }
