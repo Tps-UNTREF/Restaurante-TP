@@ -1,22 +1,20 @@
 package Clases;
 
 import java.util.HashMap;
-import java.util.Map;
-import Excepciones.MesaNoOcupadaExepcion;
-import Excepciones.ProductoNoEncontradoException;
 import Excepciones.MesaEstadoInvalidoExcepcion;
 import Excepciones.MesaNoDisponibleExcepcion;
+
 
 public class Mesa {
 
 	private Estados estado = null;
 	private int numeroDeMesa;
-	private Map<Integer, Integer> consumiciones;
+	private HashMap<Producto, Integer> consumiciones;
 
 	public Mesa(int numeroDeMesa, Estados estado) {
 		this.estado = estado;
 		this.numeroDeMesa = numeroDeMesa;
-		this.consumiciones = new HashMap<Integer, Integer>();
+		this.consumiciones = new HashMap<Producto, Integer>();
 	}
 
 	public Estados getEstado() {
@@ -27,14 +25,12 @@ public class Mesa {
 		return numeroDeMesa;
 	}
 
-	public void setConsumisiones(Integer codigoDeProducto, Integer cantidad) throws MesaNoOcupadaExepcion {
-		if(getEstado() != Estados.Ocupada){
-			throw new MesaNoOcupadaExepcion("La mesa " + this.getNumeroDeMesa() + " tiene que estar ocupada");
-		} else if (!(ModuloPrecios.getModuloPrecios().existeProducto(codigoDeProducto))) { 
-			new ProductoNoEncontradoException("Codigo de producto (" + codigoDeProducto + ") no encontrado en menu");
-		}else{
-			consumiciones.put(codigoDeProducto, consumiciones.getOrDefault(codigoDeProducto, 0) + cantidad);
-		}
+	public void setConsumisiones(Producto producto, Integer cantidad) {
+		this.consumiciones.put(producto, cantidad);
+	}
+	public HashMap<Producto,Integer> getConsumisiones(){
+		return this.consumiciones;
+
 	}
 
 	public void setEstado(Estados estado) throws MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion {
@@ -50,4 +46,6 @@ public class Mesa {
 	public enum Estados {
 		Disponible, Cerrada, Ocupada
 	}
+	
+	
 }

@@ -78,16 +78,32 @@ public class ModuloMesa {
 	 * @throws MesaNoOcupadaExepcion 
 	 * @throws ProductoNoEncontradoException 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
-		mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, 1);
-	}
+	public void registrarConsumision(int numeroDeMesa,Producto producto) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
+		boolean existe = false;
+		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada && (existe = ModuloPrecios.getModuloPrecios().existeProducto(producto))){
+			this.mesas.get(numeroDeMesa).setConsumisiones(producto, 1);
+		}else if(!existe){
+			throw new ProductoNoEncontradoException("Producto no encontrado en la lista de precios");
+		}else{
+			throw new MesaNoOcupadaExepcion("La mesa tiene que estar ocupada");
+		}
+	}	
 	/**
 	 * pre: Se le ingresa el numero de mesa, el producto y la cantidad de el producto a agregar.
 	 * @throws MesaNoOcupadaExepcion 
 	 * @throws ProductoNoEncontradoException 
 	 */
-	public void registrarConsumision(int numeroDeMesa,Integer codigoDeProducto,Integer cantidad) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
-		mesas.get(numeroDeMesa).setConsumisiones(codigoDeProducto, cantidad);
+
+	public void registrarConsumision(int numeroDeMesa,Producto producto,Integer cantidad) throws MesaNoOcupadaExepcion, ProductoNoEncontradoException{
+		boolean existe = false;
+		if(this.mesas.get(numeroDeMesa).getEstado() == Estados.Ocupada && (existe = ModuloPrecios.getModuloPrecios().existeProducto(producto))){
+			this.mesas.get(numeroDeMesa).setConsumisiones(producto, cantidad);
+		}else if(!existe){
+			throw new ProductoNoEncontradoException("Producto no encontrado en la lista de precios");
+		}else{
+			throw new MesaNoOcupadaExepcion("La mesa tiene que estar ocupada");
+		}
+
 	}
 	
 	
