@@ -16,7 +16,7 @@ import Excepciones.PrecioDeVentaInvalidoException;
 
 public class ModuloPreciosTest {
 
-ModuloPrecios moduloPrecios = ModuloPrecios.getModuloPrecios();
+	ModuloPrecios moduloPrecios = ModuloPrecios.getModuloPrecios();
 	
 	@Before
 	public void inicializacion() throws PrecioDeVentaInvalidoException, DescuentoInvalidoException, CantidadDeProductosInvalidoException {

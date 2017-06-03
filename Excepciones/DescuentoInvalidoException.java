@@ -3,9 +3,12 @@ package Excepciones;
 @SuppressWarnings("serial")
 public class DescuentoInvalidoException extends Exception {
 
-	@Override
-	public String getMessage() {
-		return "El descuento debe estar entre 0 y 100.";
+	public DescuentoInvalidoException(String msg) {
+		super(msg);
 	}
-	
+
+	public DescuentoInvalidoException() {
+		super("El descuento debe estar entre 0 y 100.");
+	}
+
 }
