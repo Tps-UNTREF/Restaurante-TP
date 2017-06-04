@@ -1,12 +1,12 @@
-/*
- * AGREGAR COMBO AL LISTAR CARTA
- */
-
 package Clases;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+
+import Excepciones.ProductoAActualizarNoExistenteException;
+import Excepciones.ProductoADarDeBajaNoExistenteException;
+import Excepciones.ProductoActualizadoYaExistenteException;
 
 public class ModuloPrecios {
 	
@@ -62,27 +62,33 @@ public class ModuloPrecios {
 	}
 	
 	/**
-	 * pre: El producto debe estar en la lista.
+	 * pre: El producto a dar de baja debe estar en la lista.
 	 * post: Borra el producto de la lista.
 	 */
-	public void bajaProducto(int codigoDeProducto) {
-		for(Producto p : productos) {
-			if(p.getCodigoDeProducto() == codigoDeProducto) {
-				productos.remove(p);
-			}
+	public void bajaProducto(Producto p) throws ProductoADarDeBajaNoExistenteException {
+		if(productos.contains(p)) {
+			productos.remove(p);
+		} else {
+			throw new ProductoADarDeBajaNoExistenteException();
 		}
 	}
 	
 	/**
-	 * pre: El producto a actualizar debe existir en la lista.
+	 * pre: El producto a actualizar debe existir en la lista y el producto actualizado no debe existir.
 	 * post: Se da de baja al producto desactualizado y se ingresa el actualizado.
 	 */
-	public void actualizarProducto(Producto productoAActualizar, Producto productoActualizado) {
-		if(productos.contains(productoAActualizar)) {
-			this.bajaProducto(productoAActualizar.getCodigoDeProducto());
+	public void actualizarProducto(Producto productoAActualizar, Producto productoActualizado) throws ProductoActualizadoYaExistenteException, ProductoAActualizarNoExistenteException, ProductoADarDeBajaNoExistenteException {
+		boolean existe = false;
+		if(productos.contains(productoAActualizar) && !(existe = productos.contains(productoActualizado))) {
+			this.bajaProducto(productoAActualizar);
 			productos.add(productoActualizado);
+		} else if(existe) {
+			throw new ProductoActualizadoYaExistenteException();
+		} else {
+			throw new ProductoAActualizarNoExistenteException();
 		}
 	}
+	
 	/**
 	 * pre: Se le pasa un codigo De producto por parametro
 	 * post: Devuelve verdadero si el producto se encuentra en la lista.
@@ -112,7 +118,7 @@ public class ModuloPrecios {
 				ultimaCategoria = p.getCategoria().toString();
 			}
 			//Imprimo el producto
-			System.out.println(p.toString());
+			p.imprimir();
 		}
 	}
 	
