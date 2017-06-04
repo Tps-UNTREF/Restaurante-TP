@@ -14,9 +14,13 @@
 =======
 >>>>>>> branch 'master' of https://github.com/Tps-UNTREF/Restaurante-TP.git
 /ProductoNoEncontradoException.class
+<<<<<<< HEAD
 /PrecioDeCostoInvalidoException.class
 /ProductoActualizadoYaExistente.class
 /ProductoAActualizarNoExistente.class
 /ProductoActualizadoYaExistenteException.class
 /ProductoAActualizarNoExistenteException.class
 /ProductoADarDeBajaNoExistenteException.class
+=======
+/MesaNoOcupadaExcepcion.class
+>>>>>>> branch 'master' of https://github.com/Tps-UNTREF/Restaurante-TP
