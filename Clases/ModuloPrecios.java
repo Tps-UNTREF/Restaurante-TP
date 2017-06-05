@@ -3,6 +3,7 @@ package Clases;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Iterator;
 
 import Excepciones.ProductoAActualizarNoExistenteException;
 import Excepciones.ProductoADarDeBajaNoExistenteException;
@@ -28,12 +29,16 @@ public class ModuloPrecios {
 	 * del producto.
 	 */
 	public void getProducto(int codigoDeProducto) {
-		for (Producto p : productos) {
+		Iterator<Producto> it = productos.iterator();
+		boolean seEncontro = false;
+		while(it.hasNext() && !seEncontro) {
+			Producto p = it.next();
 			if (p.getCodigoDeProducto() == codigoDeProducto) {
-				System.out.println("El producto " + p.getCategoria() + " "
+				System.out.println("\nEl producto " + p.getCategoria() + " "
 						+ p.getDescripcion() + " con precio de costo $"
 						+ p.getPrecioDeCosto() + " y precio de venta $"
-						+ p.getPrecioDeVenta());
+						+ p.getPrecioDeVenta() + "\n");
+				seEncontro = true;
 			}
 		}
 	}
@@ -43,12 +48,16 @@ public class ModuloPrecios {
 	 * del producto.
 	 */
 	public void getProducto(String descripcion) {
-		for (Producto p : productos) {
+		Iterator<Producto> it = productos.iterator();
+		boolean seEncontro = false;
+		while(it.hasNext() && !seEncontro) {
+			Producto p = it.next();
 			if (p.getDescripcion().equals(descripcion)) {
-				System.out.println("El producto " + p.getCategoria() + " "
+				System.out.println("\nEl producto " + p.getCategoria() + " "
 						+ p.getDescripcion() + " con precio de costo $"
 						+ p.getPrecioDeCosto() + " y precio de venta $"
-						+ p.getPrecioDeVenta());
+						+ p.getPrecioDeVenta() + "\n");
+				seEncontro = true;
 			}
 		}
 	}
@@ -123,6 +132,10 @@ public class ModuloPrecios {
 			// Imprimo el producto
 			p.imprimir();
 		}
+		return productos;
+	}
+
+	public ArrayList<Producto> getLista() {
 		return productos;
 	}
 

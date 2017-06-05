@@ -20,7 +20,7 @@ public class Combo extends Producto {
 	public Combo(String descripcion, int descuento)
 			throws PrecioDeVentaInvalidoException, DescuentoInvalidoException,
 			PrecioDeCostoInvalidoException {
-		super(descripcion, 1, 55, Categorias.Combos);
+		super(descripcion, 1, 2, Categorias.Combos);
 		this.setDescuento(descuento);
 		this.productos = new HashMap<Producto, Integer>();
 	}
@@ -71,6 +71,13 @@ public class Combo extends Producto {
 			aplicarPrecios();
 		}
 	}
+	
+	/**
+	 * post: Devuelve si el combo contiene un producto.
+	 */
+	public boolean contieneUnProducto(Producto p) {
+		return productos.containsKey(p);
+	}
 
 	/**
 	 * pre: Se deben haber ingresado los productos que estarán en el combo.
@@ -84,9 +91,14 @@ public class Combo extends Producto {
 			precioDeVentaTotal += (p.getValue() * p.getKey().getPrecioDeVenta());
 			precioDeCostoTotal += (p.getValue() * p.getKey().getPrecioDeCosto());
 		}
-		super.setPrecioDeVenta(precioDeVentaTotal
-				- (descuento * precioDeVentaTotal / 100));
-		super.setPrecioDeCosto(precioDeCostoTotal);
+		if(precioDeVentaTotal == 0) {
+			super.setPrecioDeCosto(1);
+			super.setPrecioDeVenta(2);
+		} else {
+			super.setPrecioDeCosto(precioDeCostoTotal);
+			super.setPrecioDeVenta(precioDeVentaTotal
+					- (descuento * precioDeVentaTotal / 100));
+		}
 	}
 
 	public void imprimir() {
