@@ -110,7 +110,7 @@ public class Combo extends Producto {
 		for (Entry<Producto, Integer> entrada : lista.entrySet()) {
 			fullString += super.padMiddle(" - " + entrada.getKey().getDescripcion(), 50, '.', "x" + entrada.getValue()) + "\n";
 		}
-		return fullString;
+		return fullString.substring(0, fullString.length()-1);
 	}
 
 	@Override

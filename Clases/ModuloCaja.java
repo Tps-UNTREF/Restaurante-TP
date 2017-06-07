@@ -57,8 +57,7 @@ public class ModuloCaja {
 		double suma = 0;
 		for (Map.Entry<Producto, Integer> entry : consumisiones.entrySet()) {
 			suma += (entry.getKey()).getPrecioDeVenta() * entry.getValue();
-			System.out.println("Producto: " + entry.getKey().getDescripcion() + "........" + entry.getValue() + "x$"
-					+ entry.getKey().getPrecioDeVenta());
+			System.out.println("Producto: " + entry.getKey().toStringMenu() + "x" + entry.getValue());
 		}
 		System.out.println("Total a pagar: " + suma);
 		return suma;
