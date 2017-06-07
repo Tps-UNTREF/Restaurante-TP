@@ -1,6 +1,7 @@
 package Clases;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import Excepciones.CantidadDeProductosInvalidoException;
@@ -52,7 +53,7 @@ public class Combo extends Producto {
 			throws CantidadDeProductosInvalidoException,
 			PrecioDeVentaInvalidoException, PrecioDeCostoInvalidoException {
 		if (!productos.containsKey(producto) && cantidad > 0) {
-			productos.put(producto, cantidad);
+			productos.put(producto, productos.getOrDefault(producto, 0) + cantidad);
 			aplicarPrecios();
 		} else {
 			throw new CantidadDeProductosInvalidoException();
@@ -100,25 +101,25 @@ public class Combo extends Producto {
 					- (descuento * precioDeVentaTotal / 100));
 		}
 	}
+	
+	@Override
+	public String toStringMenu() {
+		String fullString = "";
+		Map<Producto, Integer> lista = this.getCantidad(new HashMap<Producto, Integer>());
+		fullString = super.padMiddle(getCodigoDeProducto() + "..." + getDescripcion(), 50, '.', String.valueOf(getPrecioDeVenta()) + "$") + "\n";
+		for (Entry<Producto, Integer> entrada : lista.entrySet()) {
+			fullString += super.padMiddle(" - " + entrada.getKey().getDescripcion(), 50, '.', "x" + entrada.getValue()) + "\n";
+		}
+		return fullString;
+	}
 
-	public void imprimir() {
-		System.out.println(getCodigoDeProducto() + "..." + getDescripcion()
-				+ leftPad(getPrecioDeVenta(), 50, '.', getDescripcion()));
+	@Override
+	public Map<Producto, Integer> getCantidad(Map<Producto, Integer> lista) {
 		for (Entry<Producto, Integer> p : productos.entrySet()) {
-			System.out.println("- " + p.getValue() + " "
-					+ p.getKey().getDescripcion());
+			for (int i=0; i<p.getValue(); i++) {
+				p.getKey().getCantidad(lista);	
+			}
 		}
+		return lista;
 	}
-
-	private String leftPad(Object original, int length, char padCharacter,
-			Object descripcion) {
-		String paddedString = original.toString();
-		String descripcionDelProducto = descripcion.toString();
-		while (paddedString.length() < length - descripcionDelProducto.length()
-				- 1) {
-			paddedString = padCharacter + paddedString;
-		}
-		return paddedString + "$";
-	}
-
 }

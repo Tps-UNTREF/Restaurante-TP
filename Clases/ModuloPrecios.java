@@ -31,13 +31,10 @@ public class ModuloPrecios {
 	public void getProducto(int codigoDeProducto) {
 		Iterator<Producto> it = productos.iterator();
 		boolean seEncontro = false;
-		while(it.hasNext() && !seEncontro) {
+		while (it.hasNext() && !seEncontro) {
 			Producto p = it.next();
 			if (p.getCodigoDeProducto() == codigoDeProducto) {
-				System.out.println("\nEl producto " + p.getCategoria() + " "
-						+ p.getDescripcion() + " con precio de costo $"
-						+ p.getPrecioDeCosto() + " y precio de venta $"
-						+ p.getPrecioDeVenta() + "\n");
+				System.out.println(p.toString());
 				seEncontro = true;
 			}
 		}
@@ -50,13 +47,12 @@ public class ModuloPrecios {
 	public void getProducto(String descripcion) {
 		Iterator<Producto> it = productos.iterator();
 		boolean seEncontro = false;
-		while(it.hasNext() && !seEncontro) {
+		while (it.hasNext() && !seEncontro) {
 			Producto p = it.next();
 			if (p.getDescripcion().equals(descripcion)) {
-				System.out.println("\nEl producto " + p.getCategoria() + " "
-						+ p.getDescripcion() + " con precio de costo $"
-						+ p.getPrecioDeCosto() + " y precio de venta $"
-						+ p.getPrecioDeVenta() + "\n");
+				System.out.println(
+						"\nEl producto " + p.getCategoria() + " " + p.getDescripcion() + " con precio de costo $"
+								+ p.getPrecioDeCosto() + " y precio de venta $" + p.getPrecioDeVenta() + "\n");
 				seEncontro = true;
 			}
 		}
@@ -76,8 +72,7 @@ public class ModuloPrecios {
 	 * pre: El producto a dar de baja debe estar en la lista. post: Borra el
 	 * producto de la lista.
 	 */
-	public void bajaProducto(Producto p)
-			throws ProductoADarDeBajaNoExistenteException {
+	public void bajaProducto(Producto p) throws ProductoADarDeBajaNoExistenteException {
 		if (productos.contains(p)) {
 			productos.remove(p);
 		} else {
@@ -90,14 +85,11 @@ public class ModuloPrecios {
 	 * actualizado no debe existir. post: Se da de baja al producto
 	 * desactualizado y se ingresa el actualizado.
 	 */
-	public void actualizarProducto(Producto productoAActualizar,
-			Producto productoActualizado)
-			throws ProductoActualizadoYaExistenteException,
-			ProductoAActualizarNoExistenteException,
+	public void actualizarProducto(Producto productoAActualizar, Producto productoActualizado)
+			throws ProductoActualizadoYaExistenteException, ProductoAActualizarNoExistenteException,
 			ProductoADarDeBajaNoExistenteException {
 		boolean existe = false;
-		if (productos.contains(productoAActualizar)
-				&& !(existe = productos.contains(productoActualizado))) {
+		if (productos.contains(productoAActualizar) && !(existe = productos.contains(productoActualizado))) {
 			this.bajaProducto(productoAActualizar);
 			productos.add(productoActualizado);
 		} else if (existe) {
@@ -130,7 +122,7 @@ public class ModuloPrecios {
 				ultimaCategoria = p.getCategoria().toString();
 			}
 			// Imprimo el producto
-			p.imprimir();
+			System.out.println(p.toStringMenu());
 		}
 		return productos;
 	}

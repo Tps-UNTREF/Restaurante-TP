@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Map;
+
 import Excepciones.PrecioDeCostoInvalidoException;
 import Excepciones.PrecioDeVentaInvalidoException;
 
@@ -16,20 +18,14 @@ public class ProductoUnico extends Producto {
 			PrecioDeCostoInvalidoException {
 		super(descripcion, precioDeCosto, precioDeVenta, categoria);
 	}
-
-	public void imprimir() {
-		System.out.println(getCodigoDeProducto() + "..." + getDescripcion()
-				+ leftPad(getPrecioDeVenta(), 50, '.', getDescripcion()));
+	
+	@Override
+	public String toStringMenu() {
+		return super.padMiddle(getCodigoDeProducto() + "..." + getDescripcion(), 50, '.', String.valueOf(getPrecioDeVenta()) + "$") ;
 	}
-
-	private String leftPad(Object original, int length, char padCharacter,
-			Object descripcion) {
-		String paddedString = original.toString();
-		String descripcionDelProducto = descripcion.toString();
-		while (paddedString.length() < length - descripcionDelProducto.length()) {
-			paddedString = padCharacter + paddedString;
-		}
-		return paddedString + "$";
+	
+	public Map<Producto, Integer> getCantidad(Map<Producto, Integer> lista) {
+		lista.put(this, lista.getOrDefault(this, 0) + 1);
+		return lista;
 	}
-
 }

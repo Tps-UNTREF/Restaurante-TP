@@ -284,13 +284,17 @@ public class ModuloPreciosTest {
 				30, 80, Categorias.Pizzas);
 		Combo combo1 = new Combo("Combo pizza con dos cervezas", 20);
 		Combo combo2 = new Combo("Combo hamburguesa con gaseosa", 15);
+		Combo combo3 = new Combo("Combo Familiar", 10);
 
 		combo1.agregarProducto(pizzaMuzzarella, 1);
 		combo1.agregarProducto(cerveza, 2);
 
 		combo2.agregarProducto(hamburguesaCompleta, 1);
 		combo2.agregarProducto(gaseosa, 1);
-
+		
+		combo3.agregarProducto(combo1, 1);
+		combo3.agregarProducto(combo2, 4);
+		
 		moduloPrecios.altaProducto(gaseosa);
 		moduloPrecios.altaProducto(aguaMineral);
 		moduloPrecios.altaProducto(aguaSaborizada);
@@ -306,7 +310,8 @@ public class ModuloPreciosTest {
 		moduloPrecios.altaProducto(pizzaNapolitana);
 		moduloPrecios.altaProducto(combo1);
 		moduloPrecios.altaProducto(combo2);
-
+		moduloPrecios.altaProducto(combo3);
+		
 		moduloPrecios.listarMenu();
 
 	}

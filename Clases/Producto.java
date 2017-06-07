@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Map;
+
 import Excepciones.PrecioDeCostoInvalidoException;
 import Excepciones.PrecioDeVentaInvalidoException;
 
@@ -97,11 +99,27 @@ public abstract class Producto implements Comparable<Producto> {
 		return precioDeVenta;
 	}
 
-	public abstract void imprimir();
-
 	@Override
 	public int compareTo(Producto other) {
 		return this.getCategoria().compareTo(other.getCategoria());
+	}
+	
+	@Override
+	public String toString() {
+		return "El producto " + getCategoria() + " " + getDescripcion() + " con precio de costo $"
+				+ getPrecioDeCosto() + " y precio de venta $" + getPrecioDeVenta();
+	}
+	
+	public abstract String toStringMenu();
+	
+	protected abstract Map<Producto, Integer> getCantidad(Map<Producto, Integer> lista);
+	
+	protected String padMiddle(String primeraPalabra, int length, char padCharacter, String segundaPalabra) {
+		String paddedString = primeraPalabra;
+		while (paddedString.length() < length - segundaPalabra.length()) {
+			paddedString = paddedString + padCharacter;
+		}
+		return paddedString + segundaPalabra;
 	}
 
 	public enum Categorias {

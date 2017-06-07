@@ -34,8 +34,6 @@ public class ModuloMesa {
 	 * pre: Se le ingresa la cantidad de mesas que quiero para mi local. post:
 	 * Si no se generaron mesas, genera la cantidad de mesas ingresadas y las
 	 * almacena en la lista.
-	 * 
-	 * @throws MesasYaGeneradasExcepcion
 	 */
 	public static void generarMesas(int cantidadMesas) throws MesasYaGeneradasExcepcion {
 		if (mesas.size() == 0) {
@@ -88,10 +86,7 @@ public class ModuloMesa {
 
 	/**
 	 * pre: Se le ingresa el numero de mesa, y un unico producto que este
-	 * consumiendo la mesa.
-	 * 
-	 * @throws MesaNoOcupadaExcepcion
-	 * @throws ProductoNoEncontradoException
+	 * consumiendo la mesa
 	 */
 	public void registrarConsumision(int numeroDeMesa, Producto producto)
 			throws MesaNoOcupadaExcepcion, ProductoNoEncontradoException {
@@ -101,9 +96,6 @@ public class ModuloMesa {
 	/**
 	 * pre: Se le ingresa el numero de mesa, el producto y la cantidad de el
 	 * producto a agregar.
-	 * 
-	 * @throws MesaNoOcupadaExcepcion
-	 * @throws ProductoNoEncontradoException
 	 */
 	public void registrarConsumision(int numeroDeMesa, Producto producto, Integer cantidad)
 			throws MesaNoOcupadaExcepcion, ProductoNoEncontradoException {
