@@ -84,7 +84,7 @@ public class Combo extends Producto {
 	 * pre: Se deben haber ingresado los productos que estarán en el combo.
 	 * post: Se actualiza el precio del combo.
 	 */
-	public void aplicarPrecios() throws PrecioDeVentaInvalidoException,
+	private void aplicarPrecios() throws PrecioDeVentaInvalidoException,
 			PrecioDeCostoInvalidoException {
 		int precioDeVentaTotal = 0;
 		int precioDeCostoTotal = 0;

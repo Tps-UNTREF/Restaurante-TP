@@ -23,6 +23,7 @@ import Excepciones.MesaNoOcupadaExcepcion;
 import Excepciones.MesasYaGeneradasExcepcion;
 import Excepciones.PrecioDeCostoInvalidoException;
 import Excepciones.PrecioDeVentaInvalidoException;
+import Excepciones.ProductoActualizadoYaExistenteException;
 import Excepciones.ProductoNoEncontradoException;
 
 public class ModuloCajaTest {
@@ -55,7 +56,7 @@ public class ModuloCajaTest {
 	@Test
 	public void ModuloCaja_generarTicket()
 			throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException, MesaNoOcupadaExcepcion,
-			MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, ProductoNoEncontradoException, PrecioDeCostoInvalidoException {
+			MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, ProductoNoEncontradoException, PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
 		System.out.println("TEST GENERAR TICKET \n");
 
 		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categorias.BebidaSinAlcohol);
@@ -75,7 +76,7 @@ public class ModuloCajaTest {
 	@Test // falta limpiar todo
 	public void ModuloCaja_listarTicket() throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException,
 			MesaNoOcupadaExcepcion, MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, DescuentoInvalidoException,
-			ProductoNoEncontradoException, PrecioDeCostoInvalidoException {
+			ProductoNoEncontradoException, PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
 		System.out.println("TEST LISTAR TICKET \n");
 
 		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categorias.BebidaSinAlcohol);

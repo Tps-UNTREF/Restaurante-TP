@@ -1,18 +1,16 @@
 package Clases;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.TreeMap;
 import java.util.Iterator;
 
-import Excepciones.ProductoAActualizarNoExistenteException;
 import Excepciones.ProductoADarDeBajaNoExistenteException;
 import Excepciones.ProductoActualizadoYaExistenteException;
+import Excepciones.ProductoNoEncontradoException;
 
 public class ModuloPrecios {
 
 	private static ModuloPrecios moduloPrecios;
-	private ArrayList<Producto> productos = new ArrayList<Producto>();
+	private TreeMap<Integer, Producto> productos = new TreeMap<Integer, Producto>();
 
 	private ModuloPrecios() {
 	}
@@ -28,43 +26,41 @@ public class ModuloPrecios {
 	 * pre: Debe existir el producto en la lista. post: Devuelve una descripción
 	 * del producto.
 	 */
-	public void getProducto(int codigoDeProducto) {
-		Iterator<Producto> it = productos.iterator();
-		boolean seEncontro = false;
-		while (it.hasNext() && !seEncontro) {
-			Producto p = it.next();
-			if (p.getCodigoDeProducto() == codigoDeProducto) {
-				System.out.println(p.toString());
-				seEncontro = true;
-			}
+	public Producto getProducto(int codigoDeProducto) throws ProductoNoEncontradoException {
+		if (productos.containsKey(codigoDeProducto)) {
+			System.out.println(productos.get(codigoDeProducto).toString());
+			return productos.get(codigoDeProducto);
+		} else {
+			throw new ProductoNoEncontradoException();
 		}
+		
 	}
 
 	/**
 	 * pre: Debe existir el producto en la lista. post: Devuelve una descripción
 	 * del producto.
 	 */
-	public void getProducto(String descripcion) {
-		Iterator<Producto> it = productos.iterator();
-		boolean seEncontro = false;
-		while (it.hasNext() && !seEncontro) {
+	public Producto getProducto(String descripcion) throws ProductoActualizadoYaExistenteException {
+		Iterator<Producto> it = productos.values().iterator();
+		while (it.hasNext()) {
 			Producto p = it.next();
 			if (p.getDescripcion().equals(descripcion)) {
-				System.out.println(
-						"\nEl producto " + p.getCategoria() + " " + p.getDescripcion() + " con precio de costo $"
-								+ p.getPrecioDeCosto() + " y precio de venta $" + p.getPrecioDeVenta() + "\n");
-				seEncontro = true;
+				System.out.println(p.toString());
+				return p;
 			}
 		}
+		throw new ProductoActualizadoYaExistenteException();
 	}
 
 	/**
 	 * pre: El nuevo producto no debe estar ya en la lista. post: Agrega el
 	 * nuevo producto a la lista.
 	 */
-	public void altaProducto(Producto producto) {
-		if (!productos.contains(producto)) {
-			productos.add(producto);
+	public void altaProducto(Producto producto) throws ProductoActualizadoYaExistenteException {
+		if (!productos.containsValue(producto)) {
+			productos.put(producto.getCodigoDeProducto(), producto);
+		} else {
+			throw new ProductoActualizadoYaExistenteException();
 		}
 	}
 
@@ -73,8 +69,8 @@ public class ModuloPrecios {
 	 * producto de la lista.
 	 */
 	public void bajaProducto(Producto p) throws ProductoADarDeBajaNoExistenteException {
-		if (productos.contains(p)) {
-			productos.remove(p);
+		if (productos.containsValue(p)) {
+			productos.remove(p.getCodigoDeProducto());
 		} else {
 			throw new ProductoADarDeBajaNoExistenteException();
 		}
@@ -85,17 +81,13 @@ public class ModuloPrecios {
 	 * actualizado no debe existir. post: Se da de baja al producto
 	 * desactualizado y se ingresa el actualizado.
 	 */
-	public void actualizarProducto(Producto productoAActualizar, Producto productoActualizado)
-			throws ProductoActualizadoYaExistenteException, ProductoAActualizarNoExistenteException,
+	public void actualizarProducto(Producto productoActualizado)
+			throws ProductoNoEncontradoException,
 			ProductoADarDeBajaNoExistenteException {
-		boolean existe = false;
-		if (productos.contains(productoAActualizar) && !(existe = productos.contains(productoActualizado))) {
-			this.bajaProducto(productoAActualizar);
-			productos.add(productoActualizado);
-		} else if (existe) {
-			throw new ProductoActualizadoYaExistenteException();
+		if (!(productos.containsKey(productoActualizado.getCodigoDeProducto()))) {
+			throw new ProductoNoEncontradoException();
 		} else {
-			throw new ProductoAActualizarNoExistenteException();
+			productos.put(productoActualizado.getCodigoDeProducto(), productoActualizado);
 		}
 	}
 
@@ -104,17 +96,18 @@ public class ModuloPrecios {
 	 * producto se encuentra en la lista.
 	 */
 	public boolean existeProducto(Producto producto) {
-		return productos.contains(producto);
+		return productos.containsValue(producto);
 	}
 
 	/**
 	 * post: Lista los productos del menú con sus respectivos precios.
 	 */
-	public List<Producto> listarMenu() {
+	public void listarMenu() {
 		// Ordeno los productos por categoria
-		Collections.sort(productos);
 		String ultimaCategoria = "";
-		for (Producto p : productos) {
+		Iterator<Producto> it = productos.values().iterator();
+		while (it.hasNext()) {
+			Producto p = it.next();
 			// Si esta categoria de este producto es diferente a la anterior, la
 			// imprimo
 			if (ultimaCategoria != p.getCategoria().toString()) {
@@ -124,11 +117,6 @@ public class ModuloPrecios {
 			// Imprimo el producto
 			System.out.println(p.toStringMenu());
 		}
-		return productos;
-	}
-
-	public ArrayList<Producto> getLista() {
-		return productos;
 	}
 
 }
