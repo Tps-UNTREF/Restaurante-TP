@@ -1,7 +1,7 @@
 package Excepciones;
 
 @SuppressWarnings("serial")
-public class ProductoActualizadoYaExistenteException extends Exception {
+public class ProductoYaExistenteException extends Exception {
 
 	@Override
 	public String getMessage() {

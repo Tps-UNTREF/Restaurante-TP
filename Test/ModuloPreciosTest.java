@@ -14,7 +14,7 @@ import Excepciones.DescuentoInvalidoException;
 import Excepciones.PrecioDeCostoInvalidoException;
 import Excepciones.PrecioDeVentaInvalidoException;
 import Excepciones.ProductoADarDeBajaNoExistenteException;
-import Excepciones.ProductoActualizadoYaExistenteException;
+import Excepciones.ProductoYaExistenteException;
 import Excepciones.ProductoNoEncontradoException;
 
 public class ModuloPreciosTest {
@@ -137,9 +137,8 @@ public class ModuloPreciosTest {
 	}
 
 	@Test
-	public void moduloPrecios_agregarProductoAlMenuYVerificarQueSeAgrego()
-			throws PrecioDeVentaInvalidoException, PrecioDeCostoInvalidoException,
-			ProductoADarDeBajaNoExistenteException, ProductoActualizadoYaExistenteException {
+	public void moduloPrecios_agregarProductoAlMenuYVerificarQueSeAgrego() throws PrecioDeVentaInvalidoException,
+			PrecioDeCostoInvalidoException, ProductoADarDeBajaNoExistenteException, ProductoYaExistenteException {
 
 		ProductoUnico agua = new ProductoUnico("Agua", 5, 25, Categorias.BebidaSinAlcohol);
 
@@ -152,9 +151,8 @@ public class ModuloPreciosTest {
 	}
 
 	@Test
-	public void moduloPrecios_borrarProductoDelMenuYVerificarQueSeBorro()
-			throws PrecioDeVentaInvalidoException, PrecioDeCostoInvalidoException,
-			ProductoADarDeBajaNoExistenteException, ProductoActualizadoYaExistenteException {
+	public void moduloPrecios_borrarProductoDelMenuYVerificarQueSeBorro() throws PrecioDeVentaInvalidoException,
+			PrecioDeCostoInvalidoException, ProductoADarDeBajaNoExistenteException, ProductoYaExistenteException {
 
 		ProductoUnico agua = new ProductoUnico("Agua", 5, 25, Categorias.BebidaSinAlcohol);
 
@@ -167,7 +165,7 @@ public class ModuloPreciosTest {
 
 	@Test
 	public void moduloPrecios_getProductoConSuCodigo() throws PrecioDeVentaInvalidoException,
-			PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException, ProductoNoEncontradoException {
+			PrecioDeCostoInvalidoException, ProductoYaExistenteException, ProductoNoEncontradoException {
 
 		ProductoUnico cerveza = new ProductoUnico("Cerveza", 15, 40, Categorias.BebidaConAlcohol);
 
@@ -180,8 +178,8 @@ public class ModuloPreciosTest {
 	}
 
 	@Test
-	public void moduloPrecios_getProductoConSuDescripcion() throws PrecioDeVentaInvalidoException,
-			PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
+	public void moduloPrecios_getProductoConSuDescripcion() throws ProductoNoEncontradoException,
+			PrecioDeVentaInvalidoException, PrecioDeCostoInvalidoException, ProductoYaExistenteException {
 
 		ProductoUnico hamburguesa = new ProductoUnico("Hamburguesa", 20, 50, Categorias.Hamburguesas);
 
@@ -192,8 +190,8 @@ public class ModuloPreciosTest {
 	}
 
 	@Test
-	public void moduloPrecios_actualizarProductoYVerificarQueSeReemplazaron() throws PrecioDeVentaInvalidoException,
-			PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException,
+	public void moduloPrecios_actualizarProductoYVerificarQueSeReemplazaron()
+			throws PrecioDeVentaInvalidoException, PrecioDeCostoInvalidoException, ProductoYaExistenteException,
 			ProductoADarDeBajaNoExistenteException, ProductoNoEncontradoException {
 
 		Producto cocacola = new ProductoUnico("Coca Cola", 10, 30, Categorias.BebidaSinAlcohol);
@@ -212,7 +210,7 @@ public class ModuloPreciosTest {
 
 	@Test
 	public void moduloPrecios_imprimirMenu() throws PrecioDeVentaInvalidoException, PrecioDeCostoInvalidoException,
-			DescuentoInvalidoException, CantidadDeProductosInvalidoException, ProductoActualizadoYaExistenteException {
+			DescuentoInvalidoException, CantidadDeProductosInvalidoException, ProductoYaExistenteException {
 
 		ProductoUnico gaseosa = new ProductoUnico("Gaseosa", 10, 30, Categorias.BebidaSinAlcohol);
 		ProductoUnico aguaMineral = new ProductoUnico("Agua mineral", 5, 25, Categorias.BebidaSinAlcohol);

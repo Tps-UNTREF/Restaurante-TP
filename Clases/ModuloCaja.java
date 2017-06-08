@@ -2,8 +2,6 @@ package Clases;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import Clases.Mesa.Estados;
 import Excepciones.MesaEstadoInvalidoExcepcion;
@@ -34,35 +32,18 @@ public class ModuloCaja {
 	public void generarTicket(Mesa mesa)
 			throws MesaNoOcupadaExcepcion, MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion {
 		if (mesa.getEstado() == Estados.Ocupada) {
-			double montoTotal = ListarEnConsola(mesa);
-			tickets.add(new Ticket(mesa, montoTotal, new Date())); // agrega un
-																	// ticket
-																	// nuevo con
-																	// el
-																	// montoTotal
+			Ticket t = new Ticket(mesa);
+			tickets.add(t);
 			mesa.setEstado(Estados.Disponible); // Pasa la mesa a disponible
 			System.out.println("La mesa paso a " + mesa.getEstado());
 			mesa.getConsumisiones().clear(); // borra la lista de consumisiones
 			System.out.println("Se limpiaron las consumisiones de la mesa");
+			System.out.println(t.toString());
 		} else {
 			throw new MesaNoOcupadaExcepcion("La mesa tiene que estar ocupada para poder generar ticket");
 		}
 	}
-
-	/**
-	 * post: Calcula el monto y muestra por consola el ticket.
-	 */
-	private double ListarEnConsola(Mesa mesa) {
-		HashMap<Producto, Integer> consumisiones = mesa.getConsumisiones();
-		double suma = 0;
-		for (Map.Entry<Producto, Integer> entry : consumisiones.entrySet()) {
-			suma += (entry.getKey()).getPrecioDeVenta() * entry.getValue();
-			System.out.println("Producto: " + entry.getKey().toStringMenu() + "x" + entry.getValue());
-		}
-		System.out.println("Total a pagar: " + suma);
-		return suma;
-	}
-
+	
 	/**
 	 * pre: Se le pasa 2 fechas post: Busca todos los tickets entre las 2 fechas
 	 * dadas y calcula los ingresos totales entre esas 2 fechas. Tambien muestra

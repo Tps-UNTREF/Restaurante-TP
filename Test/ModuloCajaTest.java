@@ -23,7 +23,7 @@ import Excepciones.MesaNoOcupadaExcepcion;
 import Excepciones.MesasYaGeneradasExcepcion;
 import Excepciones.PrecioDeCostoInvalidoException;
 import Excepciones.PrecioDeVentaInvalidoException;
-import Excepciones.ProductoActualizadoYaExistenteException;
+import Excepciones.ProductoYaExistenteException;
 import Excepciones.ProductoNoEncontradoException;
 
 public class ModuloCajaTest {
@@ -48,15 +48,15 @@ public class ModuloCajaTest {
 	}
 
 	@Test
-	public void Ticket_CodigoDeMesa() {
-		Ticket ticket = new Ticket(new Mesa(1, Estados.Disponible), 20, new Date());
+	public void Ticket_CodigoDeMesa() throws MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion {
+		Ticket ticket = new Ticket(new Mesa(1, Estados.Disponible));
 		assertEquals(0, ticket.getCodigoDeTicket());
 	}
 
 	@Test
 	public void ModuloCaja_generarTicket()
 			throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException, MesaNoOcupadaExcepcion,
-			MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, ProductoNoEncontradoException, PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
+			MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, ProductoNoEncontradoException, PrecioDeCostoInvalidoException, ProductoYaExistenteException {
 		System.out.println("TEST GENERAR TICKET \n");
 
 		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categorias.BebidaSinAlcohol);
@@ -76,7 +76,7 @@ public class ModuloCajaTest {
 	@Test // falta limpiar todo
 	public void ModuloCaja_listarTicket() throws MesasYaGeneradasExcepcion, PrecioDeVentaInvalidoException,
 			MesaNoOcupadaExcepcion, MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, DescuentoInvalidoException,
-			ProductoNoEncontradoException, PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
+			ProductoNoEncontradoException, PrecioDeCostoInvalidoException, ProductoYaExistenteException {
 		System.out.println("TEST LISTAR TICKET \n");
 
 		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categorias.BebidaSinAlcohol);

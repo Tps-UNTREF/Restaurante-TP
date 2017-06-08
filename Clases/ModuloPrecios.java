@@ -1,16 +1,18 @@
 package Clases;
 
-import java.util.TreeMap;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import Excepciones.ProductoADarDeBajaNoExistenteException;
-import Excepciones.ProductoActualizadoYaExistenteException;
+import Excepciones.ProductoYaExistenteException;
 import Excepciones.ProductoNoEncontradoException;
 
 public class ModuloPrecios {
 
 	private static ModuloPrecios moduloPrecios;
-	private TreeMap<Integer, Producto> productos = new TreeMap<Integer, Producto>();
+	private HashMap<Integer, Producto> productos = new HashMap<Integer, Producto>();
 
 	private ModuloPrecios() {
 	}
@@ -40,7 +42,7 @@ public class ModuloPrecios {
 	 * pre: Debe existir el producto en la lista. post: Devuelve una descripción
 	 * del producto.
 	 */
-	public Producto getProducto(String descripcion) throws ProductoActualizadoYaExistenteException {
+	public Producto getProducto(String descripcion) throws ProductoNoEncontradoException {
 		Iterator<Producto> it = productos.values().iterator();
 		while (it.hasNext()) {
 			Producto p = it.next();
@@ -49,18 +51,18 @@ public class ModuloPrecios {
 				return p;
 			}
 		}
-		throw new ProductoActualizadoYaExistenteException();
+		throw new ProductoNoEncontradoException();
 	}
 
 	/**
 	 * pre: El nuevo producto no debe estar ya en la lista. post: Agrega el
 	 * nuevo producto a la lista.
 	 */
-	public void altaProducto(Producto producto) throws ProductoActualizadoYaExistenteException {
+	public void altaProducto(Producto producto) throws ProductoYaExistenteException {
 		if (!productos.containsValue(producto)) {
 			productos.put(producto.getCodigoDeProducto(), producto);
 		} else {
-			throw new ProductoActualizadoYaExistenteException();
+			throw new ProductoYaExistenteException();
 		}
 	}
 
@@ -104,10 +106,13 @@ public class ModuloPrecios {
 	 */
 	public void listarMenu() {
 		// Ordeno los productos por categoria
+		LinkedList<Producto> lista = new LinkedList<Producto>();
+		for (Producto p : productos.values()) {
+			lista.add(p);
+		}
+		Collections.sort(lista);
 		String ultimaCategoria = "";
-		Iterator<Producto> it = productos.values().iterator();
-		while (it.hasNext()) {
-			Producto p = it.next();
+		for (Producto p : lista) {
 			// Si esta categoria de este producto es diferente a la anterior, la
 			// imprimo
 			if (ultimaCategoria != p.getCategoria().toString()) {

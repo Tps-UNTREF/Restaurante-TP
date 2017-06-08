@@ -19,7 +19,7 @@ import Excepciones.MesaEstadoInvalidoExcepcion;
 import Excepciones.MesasYaGeneradasExcepcion;
 import Excepciones.PrecioDeCostoInvalidoException;
 import Excepciones.PrecioDeVentaInvalidoException;
-import Excepciones.ProductoActualizadoYaExistenteException;
+import Excepciones.ProductoYaExistenteException;
 import Excepciones.ProductoNoEncontradoException;
 
 public class ModuloMesasTest {
@@ -102,7 +102,7 @@ public class ModuloMesasTest {
 	@Test
 	public void Mesa_registrarUnaConsumision()
 			throws PrecioDeVentaInvalidoException, DescuentoInvalidoException, MesaEstadoInvalidoExcepcion,
-			MesaNoDisponibleExcepcion, ProductoNoEncontradoException, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
+			MesaNoDisponibleExcepcion, ProductoNoEncontradoException, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoException, ProductoYaExistenteException {
 		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BebidaConAlcohol);
 		ModuloPrecios.getModuloPrecios().altaProducto(heineken);
 		moduloMesa.getMesa(1).setEstado(Estados.Ocupada);
@@ -131,7 +131,7 @@ public class ModuloMesasTest {
 	@Test
 	public void Mesa_registrarDosConsumision()
 			throws PrecioDeVentaInvalidoException, MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion,
-			ProductoNoEncontradoException, MesaNoOcupadaExcepcion, DescuentoInvalidoException, PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
+			ProductoNoEncontradoException, MesaNoOcupadaExcepcion, DescuentoInvalidoException, PrecioDeCostoInvalidoException, ProductoYaExistenteException {
 		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BebidaConAlcohol);
 		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 55, Categorias.Pizzas);
 		Combo muzaHeineken = new Combo("Mozzarella + Heineken", 10);
@@ -147,7 +147,7 @@ public class ModuloMesasTest {
 	@Test(expected = ProductoNoEncontradoException.class)
 	public void Mesa_registrarDosConsumisionSinQueExistaLaConsumision()
 			throws PrecioDeVentaInvalidoException, DescuentoInvalidoException, MesaEstadoInvalidoExcepcion,
-			MesaNoDisponibleExcepcion, ProductoNoEncontradoException, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoException, ProductoActualizadoYaExistenteException {
+			MesaNoDisponibleExcepcion, ProductoNoEncontradoException, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoException, ProductoYaExistenteException {
 		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BebidaConAlcohol);
 		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 55, Categorias.Pizzas);
 		Combo muzaHeineken = new Combo("Mozzarella + Heineken", 10);
