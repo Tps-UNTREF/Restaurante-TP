@@ -21,7 +21,7 @@ public class Combo extends Producto {
 	public Combo(String descripcion, int descuento)
 			throws PrecioDeVentaInvalidoExcepcion, DescuentoInvalidoExcepcion,
 			PrecioDeCostoInvalidoExcepcion {
-		super(descripcion, 0, 0, Categorias.COMBOS);
+		super(descripcion, 0, 0, Categoria.COMBOS);
 		this.setDescuento(descuento);
 		this.productos = new HashMap<Producto, Integer>();
 	}

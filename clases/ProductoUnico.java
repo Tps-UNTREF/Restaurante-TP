@@ -13,7 +13,7 @@ public class ProductoUnico extends Producto {
 	 * unico.
 	 */
 	public ProductoUnico(String descripcion, double precioDeCosto,
-			double precioDeVenta, Categorias categoria)
+			double precioDeVenta, Categoria categoria)
 			throws PrecioDeVentaInvalidoExcepcion,
 			PrecioDeCostoInvalidoExcepcion {
 		super(descripcion, precioDeCosto, precioDeVenta, categoria);

@@ -8,7 +8,7 @@ import clases.Combo;
 import clases.ModuloPrecios;
 import clases.Producto;
 import clases.ProductoUnico;
-import clases.Producto.Categorias;
+import clases.Producto.Categoria;
 import excepciones.CantidadDeProductosInvalidoExcepcion;
 import excepciones.DescuentoInvalidoExcepcion;
 import excepciones.PrecioDeCostoInvalidoExcepcion;
@@ -24,16 +24,16 @@ public class ModuloPreciosTest {
 	@Test
 	public void productoUnicogetCategoria() throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion {
 
-		ProductoUnico cocacola = new ProductoUnico("Coca Cola", 5, 25, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico cocacola = new ProductoUnico("Coca Cola", 5, 25, Categoria.BEBIDASINALCOHOL);
 
-		assertEquals(Categorias.BEBIDASINALCOHOL, cocacola.getCategoria());
+		assertEquals(Categoria.BEBIDASINALCOHOL, cocacola.getCategoria());
 
 	}
 
 	@Test
 	public void productoUnicogetDescripcion() throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion {
 
-		ProductoUnico milanesaNapolitana = new ProductoUnico("Milanesa Napolitana", 10, 50, Categorias.MUNUTAS);
+		ProductoUnico milanesaNapolitana = new ProductoUnico("Milanesa Napolitana", 10, 50, Categoria.MUNUTAS);
 
 		assertEquals("Milanesa Napolitana", milanesaNapolitana.getDescripcion());
 	}
@@ -41,7 +41,7 @@ public class ModuloPreciosTest {
 	@Test
 	public void productoUnicogetPrecioDeCosto() throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion {
 
-		ProductoUnico milanesaNapolitana = new ProductoUnico("Milanesa Napolitana", 10, 50, Categorias.MUNUTAS);
+		ProductoUnico milanesaNapolitana = new ProductoUnico("Milanesa Napolitana", 10, 50, Categoria.MUNUTAS);
 
 		assertEquals(10, milanesaNapolitana.getPrecioDeCosto(), 0.0);
 
@@ -50,7 +50,7 @@ public class ModuloPreciosTest {
 	@Test
 	public void productoUnicogetPrecioDeVenta() throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion {
 
-		ProductoUnico hamburguesa = new ProductoUnico("Hamburguesa", 20, 55, Categorias.HAMBURGUESAS);
+		ProductoUnico hamburguesa = new ProductoUnico("Hamburguesa", 20, 55, Categoria.HAMBURGUESAS);
 
 		assertEquals(55, hamburguesa.getPrecioDeVenta(), 0.0);
 
@@ -72,7 +72,7 @@ public class ModuloPreciosTest {
 
 		Combo combo = new Combo("Combo dos pizzas", 20);
 
-		ProductoUnico pizza = new ProductoUnico("Pizza", 15, 60, Categorias.PIZZAS);
+		ProductoUnico pizza = new ProductoUnico("Pizza", 15, 60, Categoria.PIZZAS);
 
 		combo.agregarProducto(pizza, 2);
 
@@ -86,7 +86,7 @@ public class ModuloPreciosTest {
 
 		Combo combo = new Combo("Combo dos pizzas", 20);
 
-		ProductoUnico pizza = new ProductoUnico("Pizza", 15, 60, Categorias.PIZZAS);
+		ProductoUnico pizza = new ProductoUnico("Pizza", 15, 60, Categoria.PIZZAS);
 
 		combo.agregarProducto(pizza, 2);
 		combo.borrarProducto(pizza);
@@ -101,9 +101,9 @@ public class ModuloPreciosTest {
 
 		Combo menuInfantil = new Combo("Menu infantil", 10);
 
-		ProductoUnico pizzaChica = new ProductoUnico("Pizza chica", 10, 40, Categorias.PIZZAS);
-		ProductoUnico hamburguesa = new ProductoUnico("Hamburguesa", 15, 55, Categorias.HAMBURGUESAS);
-		ProductoUnico cocacola = new ProductoUnico("Coca Cola", 7, 30, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico pizzaChica = new ProductoUnico("Pizza chica", 10, 40, Categoria.PIZZAS);
+		ProductoUnico hamburguesa = new ProductoUnico("Hamburguesa", 15, 55, Categoria.HAMBURGUESAS);
+		ProductoUnico cocacola = new ProductoUnico("Coca Cola", 7, 30, Categoria.BEBIDASINALCOHOL);
 
 		menuInfantil.agregarProducto(pizzaChica, 1);
 		menuInfantil.agregarProducto(hamburguesa, 1);
@@ -122,9 +122,9 @@ public class ModuloPreciosTest {
 
 		Combo menuInfantil = new Combo("Menu infantil", 10);
 
-		ProductoUnico pizzaChica = new ProductoUnico("Pizza chica", 10, 30, Categorias.PIZZAS);
-		ProductoUnico hamburguesaConQueso = new ProductoUnico("Hamburguesa con queso", 15, 45, Categorias.HAMBURGUESAS);
-		ProductoUnico cocacola = new ProductoUnico("Coca Cola", 7, 25, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico pizzaChica = new ProductoUnico("Pizza chica", 10, 30, Categoria.PIZZAS);
+		ProductoUnico hamburguesaConQueso = new ProductoUnico("Hamburguesa con queso", 15, 45, Categoria.HAMBURGUESAS);
+		ProductoUnico cocacola = new ProductoUnico("Coca Cola", 7, 25, Categoria.BEBIDASINALCOHOL);
 
 		menuInfantil.agregarProducto(pizzaChica, 1);
 		menuInfantil.agregarProducto(hamburguesaConQueso, 1);
@@ -140,7 +140,7 @@ public class ModuloPreciosTest {
 	public void moduloPreciosagregarProductoAlMenuYVerificarQueSeAgrego() throws PrecioDeVentaInvalidoExcepcion,
 			PrecioDeCostoInvalidoExcepcion, ProductoADarDeBajaNoExistenteExcepcion, ProductoYaExistenteExcepcion {
 
-		ProductoUnico agua = new ProductoUnico("Agua", 5, 25, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico agua = new ProductoUnico("Agua", 5, 25, Categoria.BEBIDASINALCOHOL);
 
 		moduloPrecios.altaProducto(agua);
 
@@ -154,7 +154,7 @@ public class ModuloPreciosTest {
 	public void moduloPreciosborrarProductoDelMenuYVerificarQueSeBorro() throws PrecioDeVentaInvalidoExcepcion,
 			PrecioDeCostoInvalidoExcepcion, ProductoADarDeBajaNoExistenteExcepcion, ProductoYaExistenteExcepcion {
 
-		ProductoUnico agua = new ProductoUnico("Agua", 5, 25, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico agua = new ProductoUnico("Agua", 5, 25, Categoria.BEBIDASINALCOHOL);
 
 		moduloPrecios.altaProducto(agua);
 		moduloPrecios.bajaProducto(agua);
@@ -167,7 +167,7 @@ public class ModuloPreciosTest {
 	public void moduloPreciosgetProductoConSuCodigo() throws PrecioDeVentaInvalidoExcepcion,
 			PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion, ProductoNoEncontradoExcepcion {
 
-		ProductoUnico cerveza = new ProductoUnico("Cerveza", 15, 40, Categorias.BEBIDACONALCOHOL);
+		ProductoUnico cerveza = new ProductoUnico("Cerveza", 15, 40, Categoria.BEBIDACONALCOHOL);
 
 		moduloPrecios.altaProducto(cerveza);
 
@@ -181,7 +181,7 @@ public class ModuloPreciosTest {
 	public void moduloPreciosgetProductoConSuDescripcion() throws ProductoNoEncontradoExcepcion,
 			PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion {
 
-		ProductoUnico hamburguesa = new ProductoUnico("Hamburguesa", 20, 50, Categorias.HAMBURGUESAS);
+		ProductoUnico hamburguesa = new ProductoUnico("Hamburguesa", 20, 50, Categoria.HAMBURGUESAS);
 
 		moduloPrecios.altaProducto(hamburguesa);
 
@@ -194,7 +194,7 @@ public class ModuloPreciosTest {
 			throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion,
 			ProductoADarDeBajaNoExistenteExcepcion, ProductoNoEncontradoExcepcion {
 
-		Producto cocacola = new ProductoUnico("Coca Cola", 10, 30, Categorias.BEBIDASINALCOHOL);
+		Producto cocacola = new ProductoUnico("Coca Cola", 10, 30, Categoria.BEBIDASINALCOHOL);
 
 		moduloPrecios.altaProducto(cocacola);
 
@@ -212,21 +212,21 @@ public class ModuloPreciosTest {
 	public void moduloPreciosimprimirMenu() throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion,
 			DescuentoInvalidoExcepcion, CantidadDeProductosInvalidoExcepcion, ProductoYaExistenteExcepcion {
 
-		ProductoUnico gaseosa = new ProductoUnico("Gaseosa", 10, 30, Categorias.BEBIDASINALCOHOL);
-		ProductoUnico aguaMineral = new ProductoUnico("Agua mineral", 5, 25, Categorias.BEBIDASINALCOHOL);
-		ProductoUnico aguaSaborizada = new ProductoUnico("Agua saborizada", 7, 25, Categorias.BEBIDASINALCOHOL);
-		ProductoUnico cerveza = new ProductoUnico("Cerveza", 20, 55, Categorias.BEBIDACONALCOHOL);
-		ProductoUnico whisky = new ProductoUnico("Whisky", 40, 90, Categorias.BEBIDACONALCOHOL);
-		ProductoUnico hamburguesaSola = new ProductoUnico("Hamburguesa sola", 15, 50, Categorias.HAMBURGUESAS);
+		ProductoUnico gaseosa = new ProductoUnico("Gaseosa", 10, 30, Categoria.BEBIDASINALCOHOL);
+		ProductoUnico aguaMineral = new ProductoUnico("Agua mineral", 5, 25, Categoria.BEBIDASINALCOHOL);
+		ProductoUnico aguaSaborizada = new ProductoUnico("Agua saborizada", 7, 25, Categoria.BEBIDASINALCOHOL);
+		ProductoUnico cerveza = new ProductoUnico("Cerveza", 20, 55, Categoria.BEBIDACONALCOHOL);
+		ProductoUnico whisky = new ProductoUnico("Whisky", 40, 90, Categoria.BEBIDACONALCOHOL);
+		ProductoUnico hamburguesaSola = new ProductoUnico("Hamburguesa sola", 15, 50, Categoria.HAMBURGUESAS);
 		ProductoUnico hamburguesaJamonYQueso = new ProductoUnico("Hamburguesa con jamon y queso", 20, 60,
-				Categorias.HAMBURGUESAS);
+				Categoria.HAMBURGUESAS);
 		ProductoUnico hamburguesaTomateYLechuga = new ProductoUnico("Hamburguesa con tomate y lechuga", 20, 60,
-				Categorias.HAMBURGUESAS);
-		ProductoUnico hamburguesaCompleta = new ProductoUnico("Hamburguesa completa", 30, 65, Categorias.HAMBURGUESAS);
-		ProductoUnico milanesa = new ProductoUnico("Milanesa", 20, 60, Categorias.MUNUTAS);
-		ProductoUnico milanesaNapolitana = new ProductoUnico("Milanesa napolitana", 25, 70, Categorias.MUNUTAS);
-		ProductoUnico pizzaMuzzarella = new ProductoUnico("Pizza de muzzarella", 25, 75, Categorias.PIZZAS);
-		ProductoUnico pizzaNapolitana = new ProductoUnico("Pizza napolitana", 30, 80, Categorias.PIZZAS);
+				Categoria.HAMBURGUESAS);
+		ProductoUnico hamburguesaCompleta = new ProductoUnico("Hamburguesa completa", 30, 65, Categoria.HAMBURGUESAS);
+		ProductoUnico milanesa = new ProductoUnico("Milanesa", 20, 60, Categoria.MUNUTAS);
+		ProductoUnico milanesaNapolitana = new ProductoUnico("Milanesa napolitana", 25, 70, Categoria.MUNUTAS);
+		ProductoUnico pizzaMuzzarella = new ProductoUnico("Pizza de muzzarella", 25, 75, Categoria.PIZZAS);
+		ProductoUnico pizzaNapolitana = new ProductoUnico("Pizza napolitana", 30, 80, Categoria.PIZZAS);
 		Combo combo1 = new Combo("Combo pizza con dos cervezas", 20);
 		Combo combo2 = new Combo("Combo hamburguesa con gaseosa", 15);
 		Combo combo3 = new Combo("Combo Familiar", 10);
@@ -265,7 +265,7 @@ public class ModuloPreciosTest {
 	public void agregarProductoAlComboConCantidadIncorrecta() throws PrecioDeVentaInvalidoExcepcion,
 			PrecioDeCostoInvalidoExcepcion, DescuentoInvalidoExcepcion, CantidadDeProductosInvalidoExcepcion {
 
-		ProductoUnico producto = new ProductoUnico("Producto", 10, 30, Categorias.BEBIDACONALCOHOL);
+		ProductoUnico producto = new ProductoUnico("Producto", 10, 30, Categoria.BEBIDACONALCOHOL);
 
 		Combo combo = new Combo("Combo", 30);
 
@@ -287,7 +287,7 @@ public class ModuloPreciosTest {
 			throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion {
 
 		@SuppressWarnings("unused")
-		ProductoUnico producto = new ProductoUnico("Producto", -5, 10, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico producto = new ProductoUnico("Producto", -5, 10, Categoria.BEBIDASINALCOHOL);
 
 	}
 
@@ -296,7 +296,7 @@ public class ModuloPreciosTest {
 			throws PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion {
 
 		@SuppressWarnings("unused")
-		ProductoUnico producto = new ProductoUnico("Producto", 20, 10, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico producto = new ProductoUnico("Producto", 20, 10, Categoria.BEBIDASINALCOHOL);
 
 	}
 
@@ -304,7 +304,7 @@ public class ModuloPreciosTest {
 	public void reemplazarUnProductoNoExistentePorOtro() throws ProductoNoEncontradoExcepcion,
 			PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoADarDeBajaNoExistenteExcepcion {
 
-		ProductoUnico producto1 = new ProductoUnico("Producto 1", 5, 10, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico producto1 = new ProductoUnico("Producto 1", 5, 10, Categoria.BEBIDASINALCOHOL);
 
 		moduloPrecios.actualizarProducto(producto1);
 
@@ -314,7 +314,7 @@ public class ModuloPreciosTest {
 	public void darDeBajaAUnProductoNoExistente() throws ProductoADarDeBajaNoExistenteExcepcion,
 			PrecioDeVentaInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion {
 
-		ProductoUnico producto1 = new ProductoUnico("Producto 1", 5, 10, Categorias.BEBIDASINALCOHOL);
+		ProductoUnico producto1 = new ProductoUnico("Producto 1", 5, 10, Categoria.BEBIDASINALCOHOL);
 
 		moduloPrecios.bajaProducto(producto1);
 

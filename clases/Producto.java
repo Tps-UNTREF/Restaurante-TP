@@ -12,7 +12,7 @@ public abstract class Producto implements Comparable<Producto> {
 	private String descripcion;
 	private double precioDeCosto;
 	private double precioDeVenta;
-	private Categorias categoria;
+	private Categoria categoria;
 
 	/**
 	 * pre: El precio de venta debe ser mayor a cero y el precio de costo debe
@@ -20,7 +20,7 @@ public abstract class Producto implements Comparable<Producto> {
 	 * producto.
 	 */
 	public Producto(String descripcion, double precioDeCosto,
-			double precioDeVenta, Categorias categoria)
+			double precioDeVenta, Categoria categoria)
 			throws PrecioDeVentaInvalidoExcepcion,
 			PrecioDeCostoInvalidoExcepcion {
 		contadorId++;
@@ -41,7 +41,7 @@ public abstract class Producto implements Comparable<Producto> {
 	/**
 	 * post: Devuelve la categoria del producto.
 	 */
-	public Categorias getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
@@ -122,7 +122,7 @@ public abstract class Producto implements Comparable<Producto> {
 		return paddedString + segundaPalabra;
 	}
 
-	public enum Categorias {
+	public enum Categoria {
 		BEBIDACONALCOHOL, BEBIDASINALCOHOL, PIZZAS, HAMBURGUESAS, MUNUTAS, COMBOS
 	}
 }

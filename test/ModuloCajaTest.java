@@ -15,7 +15,7 @@ import clases.ModuloPrecios;
 import clases.ProductoUnico;
 import clases.Ticket;
 import clases.Mesa.Estado;
-import clases.Producto.Categorias;
+import clases.Producto.Categoria;
 import excepciones.DescuentoInvalidoExcepcion;
 import excepciones.MesaEstadoInvalidoExcepcion;
 import excepciones.MesaNoDisponibleExcepcion;
@@ -59,8 +59,8 @@ public class ModuloCajaTest {
 			MesaNoDisponibleExcepcion, MesaEstadoInvalidoExcepcion, ProductoNoEncontradoExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion {
 		System.out.println("TEST GENERAR TICKET \n");
 
-		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categorias.BEBIDASINALCOHOL);
-		ProductoUnico p3 = new ProductoUnico("Milanga napolitanga con fritangas", 20, 70, Categorias.MUNUTAS);
+		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categoria.BEBIDASINALCOHOL);
+		ProductoUnico p3 = new ProductoUnico("Milanga napolitanga con fritangas", 20, 70, Categoria.MUNUTAS);
 
 		moduloPrecios.altaProducto(p1);
 		moduloPrecios.altaProducto(p3);
@@ -79,9 +79,9 @@ public class ModuloCajaTest {
 			ProductoNoEncontradoExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion {
 		System.out.println("TEST LISTAR TICKET \n");
 
-		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categorias.BEBIDASINALCOHOL);
-		ProductoUnico p3 = new ProductoUnico("Milanga napolitanga con fritangas", 20, 70, Categorias.MUNUTAS);
-		ProductoUnico p8 = new ProductoUnico("Hamburguesa completa", 25, 60, Categorias.HAMBURGUESAS);
+		ProductoUnico p1 = new ProductoUnico("Coca Cola", 5, 25, Categoria.BEBIDASINALCOHOL);
+		ProductoUnico p3 = new ProductoUnico("Milanga napolitanga con fritangas", 20, 70, Categoria.MUNUTAS);
+		ProductoUnico p8 = new ProductoUnico("Hamburguesa completa", 25, 60, Categoria.HAMBURGUESAS);
 		Combo c1 = new Combo("Combo hamburguesa y gaseosa", 10);
 
 		moduloPrecios.altaProducto(p1);

@@ -11,7 +11,7 @@ import clases.ModuloMesa;
 import clases.ModuloPrecios;
 import clases.ProductoUnico;
 import clases.Mesa.Estado;
-import clases.Producto.Categorias;
+import clases.Producto.Categoria;
 import excepciones.DescuentoInvalidoExcepcion;
 import excepciones.MesaEstadoInvalidoExcepcion;
 import excepciones.MesaNoDisponibleExcepcion;
@@ -103,7 +103,7 @@ public class ModuloMesasTest {
 	public void mesaregistrarUnaConsumision()
 			throws PrecioDeVentaInvalidoExcepcion, DescuentoInvalidoExcepcion, MesaEstadoInvalidoExcepcion,
 			MesaNoDisponibleExcepcion, ProductoNoEncontradoExcepcion, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion {
-		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BEBIDACONALCOHOL);
+		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categoria.BEBIDACONALCOHOL);
 		ModuloPrecios.getModuloPrecios().altaProducto(heineken);
 		moduloMesa.getMesa(1).setEstado(Estado.OCUPADA);
 		moduloMesa.getMesa(1).setConsumisiones(heineken, 1);
@@ -114,7 +114,7 @@ public class ModuloMesasTest {
 	public void mesaregistrarUnaConsumisionSinQueExistaLaConsumision()
 			throws PrecioDeVentaInvalidoExcepcion, DescuentoInvalidoExcepcion, MesaEstadoInvalidoExcepcion,
 			MesaNoDisponibleExcepcion, ProductoNoEncontradoExcepcion, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoExcepcion {
-		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BEBIDACONALCOHOL);
+		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categoria.BEBIDACONALCOHOL);
 		moduloMesa.getMesa(1).setEstado(Estado.OCUPADA);
 		moduloMesa.getMesa(1).setConsumisiones(heineken, 1);
 	}
@@ -123,7 +123,7 @@ public class ModuloMesasTest {
 	public void mesaregistrarUnaConsumisionConMesaCerrada()
 			throws PrecioDeVentaInvalidoExcepcion, DescuentoInvalidoExcepcion, MesaEstadoInvalidoExcepcion,
 			MesaNoDisponibleExcepcion, ProductoNoEncontradoExcepcion, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoExcepcion {
-		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BEBIDACONALCOHOL);
+		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categoria.BEBIDACONALCOHOL);
 		moduloMesa.getMesa(1).setConsumisiones(heineken, 1);
 
 	}
@@ -132,8 +132,8 @@ public class ModuloMesasTest {
 	public void mesaregistrarDosConsumision()
 			throws PrecioDeVentaInvalidoExcepcion, MesaEstadoInvalidoExcepcion, MesaNoDisponibleExcepcion,
 			ProductoNoEncontradoExcepcion, MesaNoOcupadaExcepcion, DescuentoInvalidoExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion {
-		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BEBIDACONALCOHOL);
-		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 55, Categorias.PIZZAS);
+		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categoria.BEBIDACONALCOHOL);
+		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 55, Categoria.PIZZAS);
 		Combo muzaHeineken = new Combo("Mozzarella + Heineken", 10);
 		ModuloPrecios.getModuloPrecios().altaProducto(heineken);
 		ModuloPrecios.getModuloPrecios().altaProducto(mozzarella);
@@ -148,8 +148,8 @@ public class ModuloMesasTest {
 	public void mesaregistrarDosConsumisionSinQueExistaLaConsumision()
 			throws PrecioDeVentaInvalidoExcepcion, DescuentoInvalidoExcepcion, MesaEstadoInvalidoExcepcion,
 			MesaNoDisponibleExcepcion, ProductoNoEncontradoExcepcion, MesaNoOcupadaExcepcion, PrecioDeCostoInvalidoExcepcion, ProductoYaExistenteExcepcion {
-		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categorias.BEBIDACONALCOHOL);
-		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 55, Categorias.PIZZAS);
+		ProductoUnico heineken = new ProductoUnico("Heineken", 30, 65, Categoria.BEBIDACONALCOHOL);
+		ProductoUnico mozzarella = new ProductoUnico("Mozzarella", 20, 55, Categoria.PIZZAS);
 		Combo muzaHeineken = new Combo("Mozzarella + Heineken", 10);
 		ModuloPrecios.getModuloPrecios().altaProducto(heineken);
 		ModuloPrecios.getModuloPrecios().altaProducto(mozzarella);
